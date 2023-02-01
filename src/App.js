@@ -1,21 +1,25 @@
 
+import { Route, Routes } from 'react-router-dom'
+import GlobalStyle from './utils/style/GlobalStyle'
+import Home from './pages/Home/Home'
+import CreateEmployee from './pages/CreateEmployee/CreateEmployee'
+import EmployeeList from './pages/EmployeeList/EmployeeList'
+import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
+
+// import Error from './pages/Error/Error'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <GlobalStyle />
+      <Header />
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route path="/create" element={<CreateEmployee />} />
+        <Route path="/list" element={<EmployeeList />} />
+      </Routes>
+      <Footer />
     </div>
   );
 }
