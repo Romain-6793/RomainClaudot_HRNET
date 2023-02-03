@@ -9,7 +9,7 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 padding: 5px 20px;
-background: ${colors.tertiary}
+background: ${colors.primary}
 `
 
 const HomeLogoContainer = styled.div`
@@ -18,8 +18,7 @@ align-items: center;
 `
 
 const HomeLogo = styled.img`
- max-width: 100%;
- width: 200px;
+ width: 100px;
 `
 
 const StyledLink = styled(Link)`

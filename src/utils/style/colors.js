@@ -4,7 +4,7 @@ const colors = {
 
   //marron sombre
 
-  primary: '#586d04',
+  primary: '#7ea2aa',
 
   // vert olive
 
@@ -12,7 +12,7 @@ const colors = {
 
   // vert pomme
 
-  tertiary: '#7ea2aa',
+  tertiary: '#586d04',
 
   // bleu pastel
 }

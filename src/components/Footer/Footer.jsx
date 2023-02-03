@@ -6,7 +6,7 @@ const StyledFooter = styled.footer`
   justify-content: center;
   border-top: 2px solid #ccc;
   padding: 2rem 0 1.5rem;
-  background: ${colors.tertiary};
+  background: ${colors.primary};
 `
 
 const StyledFooterText = styled.span`
