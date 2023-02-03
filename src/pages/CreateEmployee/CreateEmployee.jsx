@@ -1,7 +1,7 @@
+import {useState} from "react"
 import styled from "styled-components"
 import colors from "../../utils/style/colors"
 import SelectState from "../../components/SelectState/SelectState"
-
 
 const PageContainer = styled.div`
 width: 100%;
@@ -40,32 +40,56 @@ cursor: pointer;
 `
 
 function CreateEmployee () {
+
+    const [user, setUser] = useState({
+        firstName : "",
+        lastName : "",
+        dateOfBirth : "",
+        startDate: "",
+        street : "",
+        city : "",
+        state : null,
+        zipCode : "",
+        department : null,
+    })
+
+    console.log(user)
+    
+
     return (
         <PageContainer>
             <FormContainer>
                 <StyledTitle>Create employee</StyledTitle>
                 <form action="#" id="create-employee">
-                    <label for="first-name">First Name</label><br></br>
-                    <input type="text" id="first-name" /><br></br>
-                    <label for="last-name">Last Name</label><br></br>
-                    <input type="text" id="last-name" /><br></br>
-                    <label for="date-of-birth">Date of Birth</label><br></br>
-                    <input id="date-of-birth" type="text" /><br></br>
-                    <label for="start-date">Start Date</label><br></br>
-                    <input id="start-date" type="text" /><br></br>
-                    <fieldset class="address">
+                    <label htmlFor="first-name">First Name</label><br></br>
+                    <input type="text" id="first-name" onChange={(e) => setUser({...user, firstName:e.target.value})}/>
+                    <br></br>
+                    <label htmlFor="last-name">Last Name</label><br></br>
+                    <input type="text" id="last-name" onChange={(e) => setUser({...user, lastName:e.target.value})}/>
+                    <br></br>
+                    <label htmlFor="date-of-birth">Date of Birth</label><br></br>
+                    <input id="date-of-birth" type="date" onChange={(e) => setUser({...user, dateOfBirth:e.target.value})}/>
+                    <br></br>
+                    <label htmlFor="start-date">Start Date</label><br></br>
+                    <input id="start-date" type="date" onChange={(e) => setUser({...user, startDate:e.target.value})}/>
+                    <br></br>
+                    <fieldset className="address">
                         <legend>Address</legend>
-                        <label for="street">Street</label><br></br>
-                        <input id="street" type="text" /><br></br>
-                        <label for="city">City</label><br></br>
-                        <input id="city" type="text" /><br></br>
-                        <label for="state">State</label><br></br>
-                        <SelectState id="state"></SelectState><br></br>
-                        <label for="zip-code">Zip Code</label><br></br>
-                        <input id="zip-code" type="number" /><br></br>
+                        <label htmlFor="street">Street</label><br></br>
+                        <input id="street" type="text" onChange={(e) => setUser({...user, street:e.target.value})}/>
+                        <br></br>
+                        <label htmlFor="city">City</label><br></br>
+                        <input id="city" type="text" onChange={(e) => setUser({...user, city:e.target.value})}/>
+                        <br></br>
+                        <label htmlFor="state">State</label><br></br>
+                        <SelectState id="state" onChange={(e) => setUser({...user, state:e.target.value})}>
+                        </SelectState><br></br>
+                        <label htmlFor="zip-code">Zip Code</label><br></br>
+                        <input id="zip-code" type="number" onChange={(e) => setUser({...user, zipCode:e.target.value})}/>
+                        <br></br>
                     </fieldset>
-                    <label for="department">Department</label><br></br>
-                        <select name="department" id="department">
+                    <label htmlFor="department">Department</label><br></br>
+                        <select name="department" id="department" onChange={(e) => setUser({...user, department:e.target.value})}>
                             <option>Sales</option>
                             <option>Marketing</option>
                             <option>Engineering</option>
