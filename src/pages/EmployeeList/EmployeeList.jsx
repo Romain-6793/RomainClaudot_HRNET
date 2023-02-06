@@ -1,5 +1,7 @@
+import { useSelector } from "react-redux"
 import styled from "styled-components"
 import colors from "../../utils/style/colors"
+import UserRow from "../../components/UserRow/UserRow"
 
 
 const PageContainer = styled.div`
@@ -36,6 +38,10 @@ outline: thin solid;
 
 
 function EmployeeList () {
+
+    const userState = useSelector((state) => state.user);
+    console.log(userState)
+
     return (
         <PageContainer>
             <TableContainer>
@@ -55,30 +61,21 @@ function EmployeeList () {
                         </StyledRow>
                     </StyledThead>
                     <tbody>
-                        <StyledRow>
-                            <td>Some FN</td>
-                            <td>Some LN</td>
-                            <td>Some SD</td>
-                            <td>Some D</td>
-                            <td>Some DOB</td>
-                            <td>Some S</td>
-                            <td>Some C</td>
-                            <td>Some S</td>
-                            <td>Some ZC</td>
-                            <td>Delete</td>
-                        </StyledRow>
-                        <StyledRow>
-                            <td>Some FN</td>
-                            <td>Some LN</td>
-                            <td>Some SD</td>
-                            <td>Some D</td>
-                            <td>Some DOB</td>
-                            <td>Some S</td>
-                            <td>Some C</td>
-                            <td>Some S</td>
-                            <td>Some ZC</td>
-                            <td>Delete</td>
-                        </StyledRow>
+                    {userState.usersArray.map((index) => (
+                        <UserRow 
+                        id={index.id}
+                        key={index.id}
+                        firstName={index.firstName}
+                        lastName={index.lastName}
+                        dateOfBirth={index.dateOfBirth}
+                        startDate={index.startDate}
+                        street={index.street}
+                        city={index.city}
+                        state={index.state}
+                        zipCode={index.zipCode}
+                        department={index.department}
+                        />
+                        ))}
                     </tbody>
                 </StyledTable>
             </TableContainer>

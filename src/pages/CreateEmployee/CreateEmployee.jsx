@@ -1,7 +1,9 @@
-import {useState} from "react"
+import { useState, useEffect } from "react"
+import { useDispatch } from "react-redux"
 import styled from "styled-components"
 import colors from "../../utils/style/colors"
 import SelectState from "../../components/SelectState/SelectState"
+import {pushUser} from "../../slices/userSlice"
 
 const PageContainer = styled.div`
 width: 100%;
@@ -41,7 +43,10 @@ cursor: pointer;
 
 function CreateEmployee () {
 
+    const dispatch = useDispatch()
+
     const [user, setUser] = useState({
+        id : "",
         firstName : "",
         lastName : "",
         dateOfBirth : "",
@@ -55,12 +60,24 @@ function CreateEmployee () {
 
     console.log(user)
     
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        e.stopPropagation()
+        dispatch(pushUser(user))
+    }
+
+    useEffect(() => {
+        setUser({...user, id : Math.floor(Math.random() * Math.floor(Math.random() * Date.now()))})
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [dispatch])
+
+
 
     return (
         <PageContainer>
             <FormContainer>
                 <StyledTitle>Create employee</StyledTitle>
-                <form action="#" id="create-employee">
+                <form action="#" id="create-employee" onSubmit={handleSubmit}>
                     <label htmlFor="first-name">First Name</label><br></br>
                     <input type="text" id="first-name" onChange={(e) => setUser({...user, firstName:e.target.value})}/>
                     <br></br>
@@ -89,15 +106,15 @@ function CreateEmployee () {
                         <br></br>
                     </fieldset>
                     <label htmlFor="department">Department</label><br></br>
-                        <select name="department" id="department" onChange={(e) => setUser({...user, department:e.target.value})}>
-                            <option>Sales</option>
-                            <option>Marketing</option>
-                            <option>Engineering</option>
-                            <option>Human Resources</option>
-                            <option>Legal</option>
-                        </select>
+                    <select name="department" id="department" onChange={(e) => setUser({...user, department:e.target.value})}>
+                        <option>Sales</option>
+                        <option>Marketing</option>
+                        <option>Engineering</option>
+                        <option>Human Resources</option>
+                        <option>Legal</option>
+                    </select>
+                    <StyledButton type="submit">Save</StyledButton>
                 </form>
-                <StyledButton type="submit">Save</StyledButton>
             </FormContainer> 
         </PageContainer>
     )
