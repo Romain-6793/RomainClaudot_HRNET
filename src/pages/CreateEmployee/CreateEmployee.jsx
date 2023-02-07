@@ -72,8 +72,6 @@ function CreateEmployee () {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch])
 
-
-
     return (
         <PageContainer>
             <FormContainer>
@@ -100,7 +98,11 @@ function CreateEmployee () {
                         <input id="city" type="text" onChange={(e) => setUser({...user, city:e.target.value})}/>
                         <br></br>
                         <label htmlFor="state">State</label><br></br>
-                        <SelectState id="state" onChange={(e) => setUser({...user, state:e.target.value})}>
+                        <SelectState 
+                        id="state"
+                        user={user}
+                        setUser={setUser}
+                        >
                         </SelectState><br></br>
                         <label htmlFor="zip-code">Zip Code</label><br></br>
                         <input id="zip-code" type="number" onChange={(e) => setUser({...user, zipCode:e.target.value})}/>
@@ -113,7 +115,7 @@ function CreateEmployee () {
                         <option>Engineering</option>
                         <option>Human Resources</option>
                         <option>Legal</option>
-                    </select>
+                    </select><br></br>
                     <StyledButton type="submit">Save</StyledButton>
                 </form>
             </FormContainer> 
