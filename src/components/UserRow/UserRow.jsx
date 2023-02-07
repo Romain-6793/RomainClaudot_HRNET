@@ -9,10 +9,6 @@ function UserRow(props) {
     const dispatch = useDispatch()
 
     const handleClose = () => {
-        // if (index > -1) { // only splice array when item is found
-        //     usersArray.splice(index, 1); // 2nd parameter means remove one item only
-        //   }
-            // usersArray.splice(selectedUser, 1); // 2nd parameter means remove one item only
         dispatch(deleteUser(selectedUser)) 
         dispatch(storeUsersList(null))    
     }

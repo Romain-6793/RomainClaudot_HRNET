@@ -11,10 +11,18 @@ flex-flow: column wrap;
 align-items: center;
 border: 1px solid black;
 `
+
+const TableHeader = styled.div`
+width: 80%;
+display: flex;
+margin-top: 50px;
+justify-content: space-between;
+color: ${colors.globaltext};
+border: 1px solid purple;
+`
+
 const TableContainer = styled.div`
 width: 80%;
-margin-top: 50px;
-margin-bottom: 50px;
 color: ${colors.globaltext};
 border-radius: 10px;
 border: 1px solid red;
@@ -35,7 +43,14 @@ height: 40px;
 border: 1px solid black;
 outline: thin solid;
 `
-
+const TableFooter = styled.div`
+width: 80%;
+margin-bottom: 50px;
+display: flex;
+justify-content: space-between;
+color: ${colors.globaltext};
+border: 1px solid purple;
+`
 
 function EmployeeList () {
 
@@ -44,6 +59,22 @@ function EmployeeList () {
 
     return (
         <PageContainer>
+            <TableHeader>
+                <div>
+                    <span>Show</span>
+                    <select name="entries" id="entries">
+                        <option>10</option>
+                        <option>25</option>
+                        <option>50</option>
+                        <option>100</option>
+                    </select>
+                    <span>entries</span>
+                </div>
+                <div>
+                    <span>Search:</span>
+                    <input type="search"></input>
+                </div>
+            </TableHeader>
             <TableContainer>
                 <StyledTable>
                     <StyledThead>
@@ -79,6 +110,18 @@ function EmployeeList () {
                     </tbody>
                 </StyledTable>
             </TableContainer>
+            <TableFooter>
+                <div>
+                    <span>Showing x to x of x entries</span>
+                    <span>(filtered from x total entries)</span>
+                </div>
+                <div>
+                    <span>Previous</span>
+                    <span> X </span>
+                    <span>Next</span>
+                </div>
+
+            </TableFooter>
         </PageContainer>
     )
 }
