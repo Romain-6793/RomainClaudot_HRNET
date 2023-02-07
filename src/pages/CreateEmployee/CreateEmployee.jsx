@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 import styled from "styled-components"
 import colors from "../../utils/style/colors"
 import SelectState from "../../components/SelectState/SelectState"
-import {pushUser} from "../../slices/userSlice"
+import {pushUser, storeUsersList} from "../../slices/userSlice"
 
 const PageContainer = styled.div`
 width: 100%;
@@ -64,6 +64,7 @@ function CreateEmployee () {
         e.preventDefault()
         e.stopPropagation()
         dispatch(pushUser(user))
+        dispatch(storeUsersList())
     }
 
     useEffect(() => {

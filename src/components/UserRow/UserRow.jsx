@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { deleteUser } from "../../slices/userSlice";
+import { deleteUser, storeUsersList } from "../../slices/userSlice";
 
 function UserRow(props) {
 
@@ -13,7 +13,8 @@ function UserRow(props) {
         //     usersArray.splice(index, 1); // 2nd parameter means remove one item only
         //   }
             // usersArray.splice(selectedUser, 1); // 2nd parameter means remove one item only
-        dispatch(deleteUser(selectedUser))     
+        dispatch(deleteUser(selectedUser)) 
+        dispatch(storeUsersList(null))    
     }
 
     return (
