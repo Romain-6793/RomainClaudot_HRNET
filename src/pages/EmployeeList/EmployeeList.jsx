@@ -1,4 +1,6 @@
+import { useState, useEffect } from "react"
 import { useSelector } from "react-redux"
+import ReactPaginate from "react-paginate"
 import styled from "styled-components"
 import colors from "../../utils/style/colors"
 import UserRow from "../../components/UserRow/UserRow"
@@ -56,17 +58,45 @@ function EmployeeList () {
 
     const userState = useSelector((state) => state.user);
     console.log(userState)
+    const totalArray = userState.usersArray
+    console.log(totalArray)
+
+    // We start with an empty list of items.
+    const [currentRows, setCurrentRows] = useState(null);
+    const [pageCount, setPageCount] = useState(0);
+    // Here we use item offsets; we could also use page offsets
+    // following the API or data you're working with.
+    const [rowOffset, setRowOffset] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
+
+    useEffect(() => {
+        // Fetch items from another resources.
+        const endOffset = rowOffset + rowsPerPage;
+        console.log(`Loading items from ${rowOffset} to ${endOffset}`);
+        setCurrentRows(totalArray.slice(rowOffset, endOffset));
+        setPageCount(Math.ceil(totalArray.length / rowsPerPage));
+    }, [rowOffset, rowsPerPage, totalArray]);
+
+    // Invoke when user click to request another page.
+    const handlePageClick = (event) => {
+        const newOffset = event.selected * rowsPerPage % totalArray.length;
+        console.log(`User requested page number ${event.selected}, which is offset ${newOffset}`);
+        setRowOffset(newOffset);
+    };
 
     return (
         <PageContainer>
             <TableHeader>
                 <div>
                     <span>Show</span>
-                    <select name="entries" id="entries">
-                        <option>10</option>
-                        <option>25</option>
-                        <option>50</option>
-                        <option>100</option>
+                    <select 
+                    name="entries" 
+                    id="entries" 
+                    onChange={(e) => setRowsPerPage(Number(e.target.value))}>
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
                     </select>
                     <span>entries</span>
                 </div>
@@ -92,7 +122,7 @@ function EmployeeList () {
                         </StyledRow>
                     </StyledThead>
                     <tbody>
-                    {userState.usersArray.map((index) => (
+                    {currentRows && currentRows.map((index) => (
                         <UserRow 
                         id={index.id}
                         key={index.id}
@@ -115,11 +145,31 @@ function EmployeeList () {
                     <span>Showing x to x of x entries</span>
                     <span>(filtered from x total entries)</span>
                 </div>
-                <div>
+                {/* <div>
                     <span>Previous</span>
                     <span> X </span>
                     <span>Next</span>
-                </div>
+                </div> */}
+                <ReactPaginate
+                nextLabel="next >"
+                onPageChange={handlePageClick}
+                pageRangeDisplayed={3}
+                marginPagesDisplayed={2}
+                pageCount={pageCount}
+                previousLabel="< previous"
+                pageClassName="page-item"
+                pageLinkClassName="page-link"
+                previousClassName="page-item"
+                previousLinkClassName="page-link"
+                nextClassName="page-item"
+                nextLinkClassName="page-link"
+                breakLabel="..."
+                breakClassName="page-item"
+                breakLinkClassName="page-link"
+                containerClassName="pagination"
+                activeClassName="active"
+                renderOnZeroPageCount={null}
+            />
 
             </TableFooter>
         </PageContainer>
