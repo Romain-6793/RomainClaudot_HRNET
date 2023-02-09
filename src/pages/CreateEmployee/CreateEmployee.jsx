@@ -96,10 +96,13 @@ function CreateEmployee () {
         e.preventDefault()
         e.stopPropagation()
 
+        // The following process with formUser/newUser prevents me to rerender too much my components 
+        // with a useState on my user and a change event on every input.
 
-        // With formUser, I retrieve all the values of the inputs bound to my form, though I don't need the 
-        // button value, the FiberNode value, nor the object/action value (3 last indexes), so I get rid 
-        // of them. As well, I get rid of index 4 (fieldset). That's why I use filter.
+        // With Objects.values(e.target), I retrieve all the values of the inputs bound to my form, 
+        // though I don't need the button value, the FiberNode value, nor the object/action value 
+        // (3 last indexes), so I get rid of them.
+        // As well, I get rid of index 4 (fieldset). That's why I use filter.
         // What I obtain after my filter is an array that I need to transform into an object.
         // That's why I then use reduce, that will do the next thing :
         // for each iteration, and with the spread operator that is necessary to return an object,

@@ -57,28 +57,57 @@ border: 1px solid purple;
 function EmployeeList () {
 
     const userState = useSelector((state) => state.user);
-    console.log(userState)
     const totalArray = userState.usersArray
-    console.log(totalArray)
 
     // We start with an empty list of items.
     const [currentRows, setCurrentRows] = useState(null);
     const [pageCount, setPageCount] = useState(0);
+
     // Here we use item offsets; we could also use page offsets
     // following the API or data you're working with.
     const [rowOffset, setRowOffset] = useState(0);
+
+    // rowOffset represents the first index to be displayed within the page
+
     const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [isLastPage, setIsLastPage] = useState(false);
+
+    const endOffset = rowOffset + rowsPerPage;
 
     useEffect(() => {
         // Fetch items from another resources.
-        const endOffset = rowOffset + rowsPerPage;
+        
+
+        // endOffset represents the last index to be displayed within the page
+
         console.log(`Loading items from ${rowOffset} to ${endOffset}`);
         setCurrentRows(totalArray.slice(rowOffset, endOffset));
+
+        // We slice the totalArray from the first index to the last dynamic index 
+
         setPageCount(Math.ceil(totalArray.length / rowsPerPage));
-    }, [rowOffset, rowsPerPage, totalArray]);
+
+
+        // We set the Page count to the superior int of the number of elements of the array / rowsPerPage
+
+    }, [rowOffset, rowsPerPage, totalArray, endOffset]);
 
     // Invoke when user click to request another page.
+
+    // Each time a page is clicked the number page x will be multiplied by rowsPerPage we will
+    // divide it by the length of the Array. The rest/remainder of the operation will be our new
+    // first dynamic index.
     const handlePageClick = (event) => {
+
+        console.log(event.selected)
+
+        if (event.selected === pageCount -1) {
+            setIsLastPage(true)
+        } else {
+            setIsLastPage(false)
+        }
+
+        console.log(isLastPage)
         const newOffset = event.selected * rowsPerPage % totalArray.length;
         console.log(`User requested page number ${event.selected}, which is offset ${newOffset}`);
         setRowOffset(newOffset);
@@ -142,8 +171,12 @@ function EmployeeList () {
             </TableContainer>
             <TableFooter>
                 <div>
-                    <span>Showing x to x of x entries</span>
-                    <span>(filtered from x total entries)</span>
+                    {isLastPage?
+                    <span>Showing {rowOffset + 1} to {totalArray.length} of {totalArray.length} entries</span>
+                    :
+                    <span>Showing {rowOffset + 1} to {endOffset} of {totalArray.length} entries</span>
+                    }
+                    <span>(filtered from x entries)</span>
                 </div>
                 {/* <div>
                     <span>Previous</span>
