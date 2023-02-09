@@ -22,10 +22,6 @@ const userSlice = createSlice({
     reducers: {
         pushUser(state, action) {
             if (action.payload) {
-
-                // localStorage.setItem("usersArray", ...state.usersArray)
-                // console.log(localStorage)
-
                 return {
                     ...state,
                     usersArray: [...state.usersArray, action.payload],
@@ -44,7 +40,6 @@ const userSlice = createSlice({
             const userToDelete = action.payload
 
             const cloneUsersArray = initialArray.filter(el => el.id !== userToDelete.id)
-            console.log(cloneUsersArray)
 
             return {
                 ...state,

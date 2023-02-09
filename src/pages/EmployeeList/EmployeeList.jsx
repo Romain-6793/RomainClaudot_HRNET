@@ -76,11 +76,9 @@ function EmployeeList () {
 
     useEffect(() => {
         // Fetch items from another resources.
-        
 
         // endOffset represents the last index to be displayed within the page
 
-        console.log(`Loading items from ${rowOffset} to ${endOffset}`);
         setCurrentRows(totalArray.slice(rowOffset, endOffset));
 
         // We slice the totalArray from the first index to the last dynamic index 
@@ -99,17 +97,14 @@ function EmployeeList () {
     // first dynamic index.
     const handlePageClick = (event) => {
 
-        console.log(event.selected)
-
         if (event.selected === pageCount -1) {
             setIsLastPage(true)
         } else {
             setIsLastPage(false)
         }
 
-        console.log(isLastPage)
         const newOffset = event.selected * rowsPerPage % totalArray.length;
-        console.log(`User requested page number ${event.selected}, which is offset ${newOffset}`);
+
         setRowOffset(newOffset);
     };
 
@@ -178,11 +173,6 @@ function EmployeeList () {
                     }
                     <span>(filtered from x entries)</span>
                 </div>
-                {/* <div>
-                    <span>Previous</span>
-                    <span> X </span>
-                    <span>Next</span>
-                </div> */}
                 <ReactPaginate
                 nextLabel="next >"
                 onPageChange={handlePageClick}
@@ -202,8 +192,7 @@ function EmployeeList () {
                 containerClassName="pagination"
                 activeClassName="active"
                 renderOnZeroPageCount={null}
-            />
-
+                />
             </TableFooter>
         </PageContainer>
     )
