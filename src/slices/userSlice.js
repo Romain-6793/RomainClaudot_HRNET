@@ -1,23 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-// const initialState = {
-//     firstName: "",
-//     lastName: "",
-//     dateOfBirth: "",
-//     startDate: "",
-//     street: "",
-//     city: "",
-//     state: null,
-//     zipCode: "",
-//     department: null,
-// }
-
 const initialState = {
+    rowsPerPage: 10,
     usersArray: [],
 }
 
 const userSlice = createSlice({
-    name: "user",
+    name: "userData",
     initialState,
     reducers: {
         pushUser(state, action) {
@@ -31,8 +20,6 @@ const userSlice = createSlice({
                     ...state
                 }
             }
-
-
         },
         deleteUser(state, action) {
 
@@ -45,22 +32,14 @@ const userSlice = createSlice({
                 ...state,
                 usersArray: cloneUsersArray,
             }
-
         },
         storeUsersList(state, action) {
 
             const usersArray = [...state.usersArray];
             localStorage.setItem("usersArray", JSON.stringify(usersArray))
-
         },
-        // unstoreUsersList(state, action) {
-
-        //     localStorage.removeItem("usersArray")
-
-        // },
         loadData(state, action) {
             const data = localStorage.getItem("usersArray")
-
             if (data) {
                 return {
                     ...state,
@@ -68,9 +47,16 @@ const userSlice = createSlice({
                 };
             } else return { ...state };
         },
+        setRowsPerPage(state, action) {
+
+            return {
+                ...state,
+                rowsPerPage: action.payload,
+            }
+        },
     },
 })
 
-export const { pushUser, deleteUser, storeUsersList, unstoreUsersList, loadData } = userSlice.actions;
+export const { pushUser, deleteUser, storeUsersList, unstoreUsersList, loadData, setRowsPerPage } = userSlice.actions;
 
 export default userSlice.reducer

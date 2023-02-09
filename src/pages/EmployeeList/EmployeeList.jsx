@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
+import { setRowsPerPage } from "../../slices/userSlice"
 import ReactPaginate from "react-paginate"
 import styled from "styled-components"
 import colors from "../../utils/style/colors"
 import UserRow from "../../components/UserRow/UserRow"
+
 
 
 const PageContainer = styled.div`
@@ -56,8 +58,10 @@ border: 1px solid purple;
 
 function EmployeeList () {
 
-    const userState = useSelector((state) => state.user);
+    const userState = useSelector((state) => state.userData);
+    const dispatch = useDispatch()
     const totalArray = userState.usersArray
+    
 
     // We start with an empty list of items.
     const [currentRows, setCurrentRows] = useState(null);
@@ -69,10 +73,14 @@ function EmployeeList () {
 
     // rowOffset represents the first index to be displayed within the page
 
-    const [rowsPerPage, setRowsPerPage] = useState(10);
-    const [isLastPage, setIsLastPage] = useState(false);
+    const rowsPerPage = userState.rowsPerPage
 
-    const endOffset = rowOffset + rowsPerPage;
+    const [isLastPage, setIsLastPage] = useState(false)
+    const [isLargerThanTotal, setIsLargerThanTotal] = useState(false)
+
+    const endOffset = rowOffset + rowsPerPage
+
+    
 
     useEffect(() => {
         // Fetch items from another resources.
@@ -88,6 +96,12 @@ function EmployeeList () {
 
         // We set the Page count to the superior int of the number of elements of the array / rowsPerPage
 
+        if (endOffset > totalArray.length) {
+            setIsLargerThanTotal(true)
+        } else {
+            setIsLargerThanTotal(false)
+        }
+
     }, [rowOffset, rowsPerPage, totalArray, endOffset]);
 
     // Invoke when user click to request another page.
@@ -95,19 +109,23 @@ function EmployeeList () {
     // Each time a page is clicked the number page x will be multiplied by rowsPerPage we will
     // divide it by the length of the Array. The rest/remainder of the operation will be our new
     // first dynamic index.
-    const handlePageClick = (event) => {
+    const handlePageClick = (e) => {
 
-        if (event.selected === pageCount -1) {
+        if (e.selected === pageCount -1) {
             setIsLastPage(true)
         } else {
             setIsLastPage(false)
         }
 
-        const newOffset = event.selected * rowsPerPage % totalArray.length;
+        const newOffset = e.selected * rowsPerPage % totalArray.length;
 
         setRowOffset(newOffset);
     };
+    const handleRowsChange = (e) => {
 
+        dispatch(setRowsPerPage(Number(e.target.value)))
+        
+    };
     return (
         <PageContainer>
             <TableHeader>
@@ -116,11 +134,18 @@ function EmployeeList () {
                     <select 
                     name="entries" 
                     id="entries" 
-                    onChange={(e) => setRowsPerPage(Number(e.target.value))}>
+                    onChange={handleRowsChange}
+                    defaultValue={
+                        rowsPerPage === 10 ? "10" : 
+                        rowsPerPage === 25 ? "25" :
+                        rowsPerPage === 50 ? "50" :
+                        rowsPerPage === 100 ? "100" :
+                        null
+                    }>
                         <option value="10">10</option>
                         <option value="25">25</option>
                         <option value="50">50</option>
-                        <option value="100">100</option>
+                        <option value="100">100</option> 
                     </select>
                     <span>entries</span>
                 </div>
@@ -166,7 +191,7 @@ function EmployeeList () {
             </TableContainer>
             <TableFooter>
                 <div>
-                    {isLastPage?
+                    {isLastPage || isLargerThanTotal ?
                     <span>Showing {rowOffset + 1} to {totalArray.length} of {totalArray.length} entries</span>
                     :
                     <span>Showing {rowOffset + 1} to {endOffset} of {totalArray.length} entries</span>
