@@ -1,8 +1,8 @@
 
-function SelectState(props) {
+function SelectState() {
 
     return (
-        <select id="state" onChange={(e) => props.setUser({...props.user, state:e.target.value})}>
+        <select id="state">
 	        <option value="AL">Alabama</option>
 	        <option value="AK">Alaska</option>
             <option value="AS">American Samoa</option>

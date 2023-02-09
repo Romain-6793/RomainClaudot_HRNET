@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useDispatch } from "react-redux"
 import styled from "styled-components"
 import colors from "../../utils/style/colors"
@@ -90,60 +90,36 @@ function CreateEmployee () {
 
     const dispatch = useDispatch()
 
-    const [user, setUser] = useState({
-        id : "",
-        firstName : "",
-        lastName : "",
-        dateOfBirth : "",
-        startDate: "",
-        street : "",
-        city : "",
-        state : null,
-        zipCode : "",
-        department : null,
-    })
-
-
     const [isCreated, setIsCreated] = useState(false)
-
-    console.log(user)
     
     const handleSubmit = (e) => {
         e.preventDefault()
         e.stopPropagation()
-        // const newUser = Object.values(e.target).filter((_, index) => index < 10 && index !== 4).map((index) => {
-        //     if (!index.value) {
-        //         return ""
-        //     }
-        //     return `${index.id} : ${index.value}`
+
+
+        // With formUser, I retrieve all the values of the inputs bound to my form, though I don't need the 
+        // button value, the FiberNode value, nor the object/action value (3 last indexes), so I get rid 
+        // of them. As well, I get rid of index 4 (fieldset). That's why I use filter.
+        // What I obtain after my filter is an array that I need to transform into an object.
+        // That's why I then use reduce, that will do the next thing :
+        // for each iteration, and with the spread operator that is necessary to return an object,
+        // I assign the property to the id of my index (id of each input), then I assign the value, to
+        // the value of my index.
+        // the empty object is the initialValue, recommended when you use reduce.
+
         const formUser = Object.values(e.target).filter((_, index) => index < 10 && index !== 4)
         .reduce((acc, cur) => ({...acc, [cur.id] : cur.value}), {})
-        
+
+        // With formUser, my object isn't complete yet, so I create my final object, newUser in 
+        // which I add an id property which is very randomized to be as unique as possible.
+        // This will be the object pushed in my usersArray for each submitting of my form.
+
         const newUser = {
             id :  Math.floor(Math.random() * Math.floor(Math.random() * Date.now())),
             ...formUser,
         }
-        // .reduce((acc, cur) => {
-        //     if (!cur.value) {
-        //         return acc
-        //     }
-        //     return acc[cur.id] = cur.value
-        // })
-        console.log(newUser)
         dispatch(pushUser(newUser))
         dispatch(storeUsersList())
-        setUser({
-        id : "",
-        firstName : "",
-        lastName : "",
-        dateOfBirth : "",
-        startDate: "",
-        street : "",
-        city : "",
-        state : null,
-        zipCode : "",
-        department : null,
-        })
         setIsCreated(true)
         resetform()
     }
@@ -155,11 +131,6 @@ function CreateEmployee () {
     const handleClose = () => {
         setIsCreated(false)
     }
-
-    useEffect(() => {
-        setUser({...user, id : Math.floor(Math.random() * Math.floor(Math.random() * Date.now()))})
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isCreated])
 
     return (
         <SuperContainer>
@@ -176,38 +147,34 @@ function CreateEmployee () {
                     <StyledTitle>Create employee</StyledTitle>
                     <form action="#" id="create-employee" onSubmit={handleSubmit} style={{zIndex: 1}}>
                         <label htmlFor="firstName">First Name</label><br></br>
-                        <input type="text" id="firstName" onChange={(e) => setUser({...user, firstName:e.target.value})}/>
+                        <input type="text" id="firstName"/>
                         <br></br>
                         <label htmlFor="lastName">Last Name</label><br></br>
-                        <input type="text" id="lastName" onChange={(e) => setUser({...user, lastName:e.target.value})}/>
+                        <input type="text" id="lastName"/>
                         <br></br>
                         <label htmlFor="dateOfBirth">Date of Birth</label><br></br>
-                        <input id="dateOfBirth" type="date" onChange={(e) => setUser({...user, dateOfBirth:e.target.value})}/>
+                        <input id="dateOfBirth" type="date"/>
                         <br></br>
                         <label htmlFor="startDate">Start Date</label><br></br>
-                        <input id="startDate" type="date" onChange={(e) => setUser({...user, startDate:e.target.value})}/>
+                        <input id="startDate" type="date"/>
                         <br></br>
                         <fieldset className="address">
                             <legend>Address</legend>
                             <label htmlFor="street">Street</label><br></br>
-                            <input id="street" type="text" onChange={(e) => setUser({...user, street:e.target.value})}/>
+                            <input id="street" type="text"/>
                             <br></br>
                             <label htmlFor="city">City</label><br></br>
-                            <input id="city" type="text" onChange={(e) => setUser({...user, city:e.target.value})}/>
+                            <input id="city" type="text"/>
                             <br></br>
                             <label htmlFor="state">State</label><br></br>
-                            <SelectState 
-                            id="state"
-                            user={user}
-                            setUser={setUser}
-                            >
+                            <SelectState>
                             </SelectState><br></br>
                             <label htmlFor="zipCode">Zip Code</label><br></br>
-                            <input id="zipCode" type="number" onChange={(e) => setUser({...user, zipCode:e.target.value})}/>
+                            <input id="zipCode" type="number"/>
                             <br></br>
                         </fieldset>
                         <label htmlFor="department">Department</label><br></br>
-                        <select name="department" id="department" onChange={(e) => setUser({...user, department:e.target.value})}>
+                        <select name="department" id="department">
                             <option>Sales</option>
                             <option>Marketing</option>
                             <option>Engineering</option>
