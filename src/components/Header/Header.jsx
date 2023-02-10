@@ -6,7 +6,6 @@ import colors from '../../utils/style/colors'
 
 const StyledHeader = styled.header`
 width: 100%;
-border: 1px solid black;
 `
 
 const NavContainer = styled.nav`

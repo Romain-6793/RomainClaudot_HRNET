@@ -6,8 +6,6 @@ import styled from "styled-components"
 import colors from "../../utils/style/colors"
 import UserRow from "../../components/UserRow/UserRow"
 
-
-
 const PageContainer = styled.div`
 width: 100%;
 display: flex;
@@ -22,24 +20,37 @@ display: flex;
 margin-top: 50px;
 justify-content: space-between;
 color: ${colors.globaltext};
-border: 1px solid purple;
+border: 1px solid black;
 `
 
 const TableContainer = styled.div`
 width: 80%;
 color: ${colors.globaltext};
-border-radius: 10px;
-border: 1px solid red;
 `
 
 const StyledTable = styled.table`
 width: 100%;
-border: 1px solid blue;
+border: 1px solid black;
 `
 
 const StyledThead = styled.thead`
 border: 1px solid black;
 margin-bottom: 50px;
+@media (max-width: 767px) {
+    font-size: 8px;
+}
+@media (max-width: 424px) {
+    font-size: 5px;
+}
+`
+
+const StyledTbody = styled.tbody`
+@media (max-width: 767px) {
+    font-size: 8px;
+}
+@media (max-width: 424px) {
+    font-size: 5px;
+}
 `
 
 const StyledRow = styled.tr`
@@ -53,7 +64,7 @@ margin-bottom: 50px;
 display: flex;
 justify-content: space-between;
 color: ${colors.globaltext};
-border: 1px solid purple;
+border: 1px solid black;
 `
 
 function EmployeeList () {
@@ -170,7 +181,7 @@ function EmployeeList () {
                             <th>Delete</th>
                         </StyledRow>
                     </StyledThead>
-                    <tbody>
+                    <StyledTbody>
                     {currentRows && currentRows.map((index) => (
                         <UserRow 
                         id={index.id}
@@ -186,7 +197,7 @@ function EmployeeList () {
                         department={index.department}
                         />
                         ))}
-                    </tbody>
+                    </StyledTbody>
                 </StyledTable>
             </TableContainer>
             <TableFooter>
