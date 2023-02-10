@@ -4,6 +4,11 @@ import styled from 'styled-components'
 import HRnetLogo from '../../assets/hrnet-logo.png'
 import colors from '../../utils/style/colors'
 
+const StyledHeader = styled.header`
+width: 100%;
+border: 1px solid black;
+`
+
 const NavContainer = styled.nav`
 display: flex;
 justify-content: space-between;
@@ -15,6 +20,9 @@ background: ${colors.primary}
 const HomeLogoContainer = styled.div`
 display: flex;
 align-items: center;
+@media (max-width: 425px) {
+  margin-right: 10px;
+}
 `
 
 const HomeLogo = styled.img`
@@ -38,26 +46,28 @@ color: ${colors.globaltext}
  color: ${colors.globaltext}
 }
 @media (max-width: 767px) {
-  font-size: 15px;
+  font-size: 10px;
 }
 `
 
 function Header() {
 
  return (
-  <NavContainer>
-   <Link to="/">
-    <HomeLogoContainer>
-    <HomeLogo src={HRnetLogo} />
-    </HomeLogoContainer>
-   </Link>
-    <StyledLink to="/create">
-      Create employee
-    </StyledLink>
-    <StyledLink to="/list">
-      Employees list
-    </StyledLink>
-  </NavContainer>
+  <StyledHeader>
+    <NavContainer>
+    <Link to="/">
+      <HomeLogoContainer>
+      <HomeLogo src={HRnetLogo} />
+      </HomeLogoContainer>
+    </Link>
+      <StyledLink to="/create">
+        Create employee
+      </StyledLink>
+      <StyledLink to="/list">
+        Employees list
+      </StyledLink>
+    </NavContainer>
+  </StyledHeader>
   
  )
 }
