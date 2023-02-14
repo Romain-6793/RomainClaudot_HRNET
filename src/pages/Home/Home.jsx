@@ -34,7 +34,7 @@ color: ${colors.globaltext};
 font-weight: bold;
 font-family: Copperplate gothic light;
 font-size: 72px;
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     font-size: 36px;
 }
 `
@@ -43,7 +43,7 @@ const SubWelcome = styled.p`
 color: ${colors.globaltext};
 font-weight: bold;
 font-size: 36px;
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     font-size: 18px;
 }
 `

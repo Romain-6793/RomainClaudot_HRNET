@@ -6,7 +6,7 @@ const colors = {
 
   primary: '#7ea2aa',
 
-  // vert olive
+  // bleu pastel
 
   secondary: '#93ad18',
 
@@ -14,7 +14,7 @@ const colors = {
 
   tertiary: '#586d04',
 
-  // bleu pastel
+  // vert olive 
 }
 
 export default colors
