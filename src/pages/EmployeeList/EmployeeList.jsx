@@ -6,9 +6,8 @@ import styled from "styled-components"
 import colors from "../../utils/style/colors"
 import UserRow from "../../components/UserRow/UserRow"
 import "../../utils/style/paginate.css"
-import arrowUp from "../../assets/arrow-up.svg"
-import arrowDown from "../../assets/arrow-down.svg"
 import useWindowSize from "../../utils/hooks/useWindowSize"
+import Thead from "../../components/Thead/Thead"
 
 const PageContainer = styled.div`
 width: 100%;
@@ -40,53 +39,6 @@ width: 100%;
 color: ${colors.globaltext};
 `
 
-const StyledThead = styled.thead`
-margin-bottom: 50px;
-font-size: 10px;
-@media (max-width: 767px) {
-    font-size: 8px;
-}
-@media (max-width: 424px) {
-    font-size: 7px;
-}
-@media (max-width: 374px) {
-    font-size: 6px;
-}
-`
-
-const StyledTh = styled.th`
-margin-right: 5px;
-`
-
-const ThDiv = styled.div`
-display: flex;
-flex-flow: row wrap;
-`
-
-const ButtonDiv = styled.div`
-margin-left: 2px;
-width: 5px;
-height: 10px;
-border: 1px solid black;
-display: flex;
-flex-flow: column wrap;
-@media (max-width: 767px) {
-    display: none;
-}
-`
-
-const StyledBtnUp = styled.img`
-width: 5px;
-height: 5px;
-cursor: pointer;
-`
-
-const StyledBtnDown = styled.img`
-width: 5px;
-height: 5px;
-cursor: pointer;
-`
-
 const StyledTbody = styled.tbody`
 font-size: 10px;
 @media (max-width: 767px) {
@@ -97,10 +49,6 @@ font-size: 10px;
 }
 `
 
-const StyledRow = styled.tr`
-height: 40px;
-outline: thin solid;
-`
 const TableFooter = styled.div`
 width: 100%;
 display: flex;
@@ -125,9 +73,9 @@ max-width: 50%;
 
 function EmployeeList () {
 
-    const userState = useSelector((state) => state.userData);
+    const usersState = useSelector((state) => state.userData);
     const dispatch = useDispatch()
-    const totalArray = userState.usersArray
+    const totalArray = usersState.usersArray
     
 
     // We start with an empty list of items.
@@ -140,7 +88,7 @@ function EmployeeList () {
 
     // rowOffset represents the first index to be displayed within the page
 
-    const rowsPerPage = userState.rowsPerPage
+    const rowsPerPage = usersState.rowsPerPage
 
     // const size = useWindowSize()
     // const [isSmall, setIsSmall] = useState({ matches: size.width("(max-width: 767px)").matches });
@@ -238,109 +186,23 @@ function EmployeeList () {
                     </div>
                 </TableHeader>
                 <StyledTable>
-                    <StyledThead>
-                        <StyledRow>
-                            <StyledTh>
-                                <ThDiv>
-                                    First Name
-                                    <ButtonDiv>
-                                        <StyledBtnUp src={arrowUp} alt="up button"></StyledBtnUp>
-                                        <StyledBtnDown src={arrowDown} alt="down button"></StyledBtnDown>
-                                    </ButtonDiv>
-                                </ThDiv>
-                            </StyledTh>
-                            <StyledTh>
-                                <ThDiv>
-                                    Last Name
-                                    <ButtonDiv>
-                                        <StyledBtnUp src={arrowUp} alt="up button"></StyledBtnUp>
-                                        <StyledBtnDown src={arrowDown} alt="down button"></StyledBtnDown>
-                                    </ButtonDiv>
-                                </ThDiv>
-                            </StyledTh>
-                            <StyledTh>
-                                <ThDiv>
-                                    Start Date
-                                    <ButtonDiv>
-                                        <StyledBtnUp src={arrowUp} alt="up button"></StyledBtnUp>
-                                        <StyledBtnDown src={arrowDown} alt="down button"></StyledBtnDown>
-                                    </ButtonDiv>
-                                </ThDiv>
-                            </StyledTh>
-                            <StyledTh>
-                                <ThDiv>
-                                    Department
-                                    <ButtonDiv>
-                                        <StyledBtnUp src={arrowUp} alt="up button"></StyledBtnUp>
-                                        <StyledBtnDown src={arrowDown} alt="down button"></StyledBtnDown>
-                                    </ButtonDiv>
-                                </ThDiv>
-                            </StyledTh>
-                            <StyledTh>
-                                <ThDiv>
-                                    Date of Birth
-                                    <ButtonDiv>
-                                        <StyledBtnUp src={arrowUp} alt="up button"></StyledBtnUp>
-                                        <StyledBtnDown src={arrowDown} alt="down button"></StyledBtnDown>
-                                    </ButtonDiv>
-                                </ThDiv>
-                            </StyledTh>
-                            <StyledTh>
-                                <ThDiv>
-                                    Street
-                                    <ButtonDiv>
-                                        <StyledBtnUp src={arrowUp} alt="up button"></StyledBtnUp>
-                                        <StyledBtnDown src={arrowDown} alt="down button"></StyledBtnDown>
-                                    </ButtonDiv>
-                                </ThDiv>
-                            </StyledTh>
-                            <StyledTh>
-                                <ThDiv>
-                                    City
-                                    <ButtonDiv>
-                                        <StyledBtnUp src={arrowUp} alt="up button"></StyledBtnUp>
-                                        <StyledBtnDown src={arrowDown} alt="down button"></StyledBtnDown>
-                                    </ButtonDiv>
-                                </ThDiv>
-                            </StyledTh>
-                            <StyledTh>
-                                <ThDiv>
-                                    State
-                                    <ButtonDiv>
-                                        <StyledBtnUp src={arrowUp} alt="up button"></StyledBtnUp>
-                                        <StyledBtnDown src={arrowDown} alt="down button"></StyledBtnDown>
-                                    </ButtonDiv>
-                                </ThDiv>
-                            </StyledTh>
-                            <StyledTh>
-                                <ThDiv>
-                                    ZIP code
-                                    <ButtonDiv>
-                                        <StyledBtnUp src={arrowUp} alt="up button"></StyledBtnUp>
-                                        <StyledBtnDown src={arrowDown} alt="down button"></StyledBtnDown>
-                                    </ButtonDiv>
-                                </ThDiv>
-                            </StyledTh>
-                            <StyledTh>Delete
-                            </StyledTh>
-                        </StyledRow>
-                    </StyledThead>
+                    <Thead></Thead>
                     <StyledTbody>
-                    {currentRows && currentRows.map((index) => (
-                        <UserRow 
-                        id={index.id}
-                        key={index.id}
-                        firstName={index.firstName}
-                        lastName={index.lastName}
-                        dateOfBirth={index.dateOfBirth}
-                        startDate={index.startDate}
-                        street={index.street}
-                        city={index.city}
-                        state={index.state}
-                        zipCode={index.zipCode}
-                        department={index.department}
-                        />
-                        ))}
+                            {currentRows && currentRows.map((index) => (
+                            <UserRow 
+                            id={index.id}
+                            key={index.id}
+                            firstName={index.firstName}
+                            lastName={index.lastName}
+                            dateOfBirth={index.dateOfBirth}
+                            startDate={index.startDate}
+                            street={index.street}
+                            city={index.city}
+                            state={index.state}
+                            zipCode={index.zipCode}
+                            department={index.department}
+                            />
+                            ))}
                     </StyledTbody>
                 </StyledTable>
                 <TableFooter>

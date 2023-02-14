@@ -43,7 +43,7 @@ li {
 .grey-prev-link, .grey-next-link {
     height: 25px;
     cursor: auto;
-    color: #dcdcdc;
+    color: #ccc;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
