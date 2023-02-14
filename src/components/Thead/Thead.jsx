@@ -5,8 +5,12 @@ import arrowDown from "../../assets/arrow-down.svg"
 import arrowUpGrey from "../../assets/arrow-up-grey.svg"
 import arrowDownGrey from "../../assets/arrow-down-grey.svg"
 import { toggleFirstNames, toggleLastNames, toggleStartDates, 
-    toggleDepartments, toggleDatesOfBirth, toggleStreets, toggleCities,
-toggleStates, toggleZips } from "../../slices/userSlice"
+toggleDepartments, toggleDatesOfBirth, toggleStreets, toggleCities,
+toggleStates, toggleZips, sortFirstNamesAZ, sortFirstNamesZA,
+sortLastNamesAZ, sortLastNamesZA, sortStartDatesFormer, sortStartDatesRecent,
+sortDepartmentsAZ, sortDepartmentsZA, sortDOBFormer, sortDOBRecent,
+sortStreetLow, sortStreetHigh, sortCityAZ, sortCityZA, sortStateAZ,
+sortStateZA, sortZipLow, sortZipHigh } from "../../slices/userSlice"
 
 
 const StyledThead = styled.thead`
@@ -38,14 +42,6 @@ display: flex;
 flex-flow: row wrap;
 `
 
-// const StyledButton = styled.button`
-// width: 5px;
-// height: 10px;
-// cursor: pointer;
-// border: none;
-// background: transparent;
-// `
-
 const ButtonDiv = styled.div`
 margin-left: 3px;
 margin-top: 1px;
@@ -53,6 +49,7 @@ width: 5px;
 height: 10px;
 display: flex;
 flex-flow: column wrap;
+cursor: pointer;
 @media (max-width: 767px) {
     display: none;
 }
@@ -71,7 +68,97 @@ function Thead () {
     const usersState = useSelector((state) => state.userData);
     const arrowData = usersState.arrowData
     const dispatch = useDispatch()
-  
+
+    function handleFirstNames() {
+        dispatch(toggleFirstNames())
+
+        if (!arrowData.firstNameUp) {
+            dispatch(sortFirstNamesAZ())
+        } else {
+            dispatch(sortFirstNamesZA())
+        }
+    }
+
+    function handleLastNames() {
+        dispatch(toggleLastNames())
+
+        if (!arrowData.lastNameUp) {
+            dispatch(sortLastNamesAZ())
+        } else {
+            dispatch(sortLastNamesZA())
+        }
+    }
+
+    function handleStartDates() {
+        dispatch(toggleStartDates())
+
+        if (!arrowData.startDateUp) {
+            dispatch(sortStartDatesFormer())
+        } else {
+            dispatch(sortStartDatesRecent())
+        }
+    }
+
+    function handleDepartments() {
+        dispatch(toggleDepartments())
+
+        if (!arrowData.departmentUp) {
+            dispatch(sortDepartmentsAZ())
+        } else {
+            dispatch(sortDepartmentsZA())
+        }
+    }
+
+    function handleDatesOfBirth() {
+        dispatch(toggleDatesOfBirth())
+
+        if (!arrowData.dateOfBirthUp) {
+            dispatch(sortDOBFormer())
+        } else {
+            dispatch(sortDOBRecent())
+        }
+    }
+
+    function handleStreets() {
+        dispatch(toggleStreets())
+
+        if (!arrowData.streetUp) {
+            dispatch(sortStreetLow())
+        } else {
+            dispatch(sortStreetHigh())
+        }
+    }
+
+    function handleCities() {
+        dispatch(toggleCities())
+
+        if (!arrowData.cityUp) {
+            dispatch(sortCityAZ())
+        } else {
+            dispatch(sortCityZA())
+        }
+    }
+
+    function handleStates() {
+        dispatch(toggleStates())
+
+        if (!arrowData.stateUp) {
+            dispatch(sortStateAZ())
+        } else {
+            dispatch(sortStateZA())
+        }
+    }
+
+    function handleZips() {
+        dispatch(toggleZips())
+
+        if (!arrowData.zipUp) {
+            dispatch(sortZipLow())
+        } else {
+            dispatch(sortZipHigh())
+        }
+    }
+
     return (
     <StyledThead>
         <StyledRow>
@@ -79,17 +166,17 @@ function Thead () {
                 <ThDiv>
                     First Name
                     {arrowData.firstNameUp && arrowData.firstNameFocus ?
-                    <ButtonDiv onClick={() => dispatch(toggleFirstNames())}>
+                    <ButtonDiv onClick={handleFirstNames}>
                     <ImgBtnUp src={arrowUp} alt="up button"></ImgBtnUp>
                     <ImgBtnDown src={arrowDownGrey} alt="down button"></ImgBtnDown>
                     </ButtonDiv>
                     : !arrowData.firstNameUp && arrowData.firstNameFocus ?
-                    <ButtonDiv onClick={() => dispatch(toggleFirstNames())}>
+                    <ButtonDiv onClick={handleFirstNames}>
                     <ImgBtnUp src={arrowUpGrey} alt="up button"></ImgBtnUp>
                     <ImgBtnDown src={arrowDown} alt="down button"></ImgBtnDown>
                     </ButtonDiv>
                     :
-                    <ButtonDiv onClick={() => dispatch(toggleFirstNames())}>
+                    <ButtonDiv onClick={handleFirstNames}>
                     <ImgBtnUp src={arrowUpGrey} alt="up button"></ImgBtnUp>
                     <ImgBtnDown src={arrowDownGrey} alt="down button"></ImgBtnDown>
                     </ButtonDiv>}
@@ -99,17 +186,17 @@ function Thead () {
                 <ThDiv>
                     Last Name
                     {arrowData.lastNameUp && arrowData.lastNameFocus ?
-                    <ButtonDiv onClick={() => dispatch(toggleLastNames())}>
+                    <ButtonDiv onClick={handleLastNames}>
                     <ImgBtnUp src={arrowUp} alt="up button"></ImgBtnUp>
                     <ImgBtnDown src={arrowDownGrey} alt="down button"></ImgBtnDown>
                     </ButtonDiv>
                     : !arrowData.lastNameUp && arrowData.lastNameFocus ?
-                    <ButtonDiv onClick={() => dispatch(toggleLastNames())}>
+                    <ButtonDiv onClick={handleLastNames}>
                     <ImgBtnUp src={arrowUpGrey} alt="up button"></ImgBtnUp>
                     <ImgBtnDown src={arrowDown} alt="down button"></ImgBtnDown>
                     </ButtonDiv>
                     :
-                    <ButtonDiv onClick={() => dispatch(toggleLastNames())}>
+                    <ButtonDiv onClick={handleLastNames}>
                     <ImgBtnUp src={arrowUpGrey} alt="up button"></ImgBtnUp>
                     <ImgBtnDown src={arrowDownGrey} alt="down button"></ImgBtnDown>
                     </ButtonDiv>}
@@ -119,17 +206,17 @@ function Thead () {
                 <ThDiv>
                     Start Date
                     {arrowData.startDateUp && arrowData.startDateFocus ?
-                    <ButtonDiv onClick={() => dispatch(toggleStartDates())}>
+                    <ButtonDiv onClick={handleStartDates}>
                     <ImgBtnUp src={arrowUp} alt="up button"></ImgBtnUp>
                     <ImgBtnDown src={arrowDownGrey} alt="down button"></ImgBtnDown>
                     </ButtonDiv>
                     : !arrowData.startDateUp && arrowData.startDateFocus ?
-                    <ButtonDiv onClick={() => dispatch(toggleStartDates())}>
+                    <ButtonDiv onClick={handleStartDates}>
                     <ImgBtnUp src={arrowUpGrey} alt="up button"></ImgBtnUp>
                     <ImgBtnDown src={arrowDown} alt="down button"></ImgBtnDown>
                     </ButtonDiv>
                     :
-                    <ButtonDiv onClick={() => dispatch(toggleStartDates())}>
+                    <ButtonDiv onClick={handleStartDates}>
                     <ImgBtnUp src={arrowUpGrey} alt="up button"></ImgBtnUp>
                     <ImgBtnDown src={arrowDownGrey} alt="down button"></ImgBtnDown>
                     </ButtonDiv>}
@@ -139,17 +226,17 @@ function Thead () {
                 <ThDiv>
                     Department
                     {arrowData.departmentUp && arrowData.departmentFocus ?
-                    <ButtonDiv onClick={() => dispatch(toggleDepartments())}>
+                    <ButtonDiv onClick={handleDepartments}>
                     <ImgBtnUp src={arrowUp} alt="up button"></ImgBtnUp>
                     <ImgBtnDown src={arrowDownGrey} alt="down button"></ImgBtnDown>
                     </ButtonDiv>
                     : !arrowData.departmentUp && arrowData.departmentFocus ?
-                    <ButtonDiv onClick={() => dispatch(toggleDepartments())}>
+                    <ButtonDiv onClick={handleDepartments}>
                     <ImgBtnUp src={arrowUpGrey} alt="up button"></ImgBtnUp>
                     <ImgBtnDown src={arrowDown} alt="down button"></ImgBtnDown>
                     </ButtonDiv>
                     :
-                    <ButtonDiv onClick={() => dispatch(toggleDepartments())}>
+                    <ButtonDiv onClick={handleDepartments}>
                     <ImgBtnUp src={arrowUpGrey} alt="up button"></ImgBtnUp>
                     <ImgBtnDown src={arrowDownGrey} alt="down button"></ImgBtnDown>
                     </ButtonDiv>}
@@ -159,17 +246,17 @@ function Thead () {
                 <ThDiv>
                     Date of Birth
                     {arrowData.dateOfBirthUp && arrowData.dateOfBirthFocus ?
-                    <ButtonDiv onClick={() => dispatch(toggleDatesOfBirth())}>
+                    <ButtonDiv onClick={handleDatesOfBirth}>
                     <ImgBtnUp src={arrowUp} alt="up button"></ImgBtnUp>
                     <ImgBtnDown src={arrowDownGrey} alt="down button"></ImgBtnDown>
                     </ButtonDiv>
                     : !arrowData.dateOfBirthUp && arrowData.dateOfBirthFocus ?
-                    <ButtonDiv onClick={() => dispatch(toggleDatesOfBirth())}>
+                    <ButtonDiv onClick={handleDatesOfBirth}>
                     <ImgBtnUp src={arrowUpGrey} alt="up button"></ImgBtnUp>
                     <ImgBtnDown src={arrowDown} alt="down button"></ImgBtnDown>
                     </ButtonDiv>
                     :
-                    <ButtonDiv onClick={() => dispatch(toggleDatesOfBirth())}>
+                    <ButtonDiv onClick={handleDatesOfBirth}>
                     <ImgBtnUp src={arrowUpGrey} alt="up button"></ImgBtnUp>
                     <ImgBtnDown src={arrowDownGrey} alt="down button"></ImgBtnDown>
                     </ButtonDiv>}
@@ -179,17 +266,17 @@ function Thead () {
                 <ThDiv>
                     Street
                     {arrowData.streetUp && arrowData.streetFocus ?
-                    <ButtonDiv onClick={() => dispatch(toggleStreets())}>
+                    <ButtonDiv onClick={handleStreets}>
                     <ImgBtnUp src={arrowUp} alt="up button"></ImgBtnUp>
                     <ImgBtnDown src={arrowDownGrey} alt="down button"></ImgBtnDown>
                     </ButtonDiv>
                     : !arrowData.streetUp && arrowData.streetFocus ?
-                    <ButtonDiv onClick={() => dispatch(toggleStreets())}>
+                    <ButtonDiv onClick={handleStreets}>
                     <ImgBtnUp src={arrowUpGrey} alt="up button"></ImgBtnUp>
                     <ImgBtnDown src={arrowDown} alt="down button"></ImgBtnDown>
                     </ButtonDiv>
                     :
-                    <ButtonDiv onClick={() => dispatch(toggleStreets())}>
+                    <ButtonDiv onClick={handleStreets}>
                     <ImgBtnUp src={arrowUpGrey} alt="up button"></ImgBtnUp>
                     <ImgBtnDown src={arrowDownGrey} alt="down button"></ImgBtnDown>
                     </ButtonDiv>}
@@ -199,17 +286,17 @@ function Thead () {
                 <ThDiv>
                     City
                     {arrowData.cityUp && arrowData.cityFocus ?
-                    <ButtonDiv onClick={() => dispatch(toggleCities())}>
+                    <ButtonDiv onClick={handleCities}>
                     <ImgBtnUp src={arrowUp} alt="up button"></ImgBtnUp>
                     <ImgBtnDown src={arrowDownGrey} alt="down button"></ImgBtnDown>
                     </ButtonDiv>
                     : !arrowData.cityUp && arrowData.cityFocus ?
-                    <ButtonDiv onClick={() => dispatch(toggleCities())}>
+                    <ButtonDiv onClick={handleCities}>
                     <ImgBtnUp src={arrowUpGrey} alt="up button"></ImgBtnUp>
                     <ImgBtnDown src={arrowDown} alt="down button"></ImgBtnDown>
                     </ButtonDiv>
                     :
-                    <ButtonDiv onClick={() => dispatch(toggleCities())}>
+                    <ButtonDiv onClick={handleCities}>
                     <ImgBtnUp src={arrowUpGrey} alt="up button"></ImgBtnUp>
                     <ImgBtnDown src={arrowDownGrey} alt="down button"></ImgBtnDown>
                     </ButtonDiv>}
@@ -219,17 +306,17 @@ function Thead () {
                 <ThDiv>
                     State
                     {arrowData.stateUp && arrowData.stateFocus ?
-                    <ButtonDiv onClick={() => dispatch(toggleStates())}>
+                    <ButtonDiv onClick={handleStates}>
                     <ImgBtnUp src={arrowUp} alt="up button"></ImgBtnUp>
                     <ImgBtnDown src={arrowDownGrey} alt="down button"></ImgBtnDown>
                     </ButtonDiv>
                     : !arrowData.stateUp && arrowData.stateFocus ?
-                    <ButtonDiv onClick={() => dispatch(toggleStates())}>
+                    <ButtonDiv onClick={handleStates}>
                     <ImgBtnUp src={arrowUpGrey} alt="up button"></ImgBtnUp>
                     <ImgBtnDown src={arrowDown} alt="down button"></ImgBtnDown>
                     </ButtonDiv>
                     :
-                    <ButtonDiv onClick={() => dispatch(toggleStates())}>
+                    <ButtonDiv onClick={handleStates}>
                     <ImgBtnUp src={arrowUpGrey} alt="up button"></ImgBtnUp>
                     <ImgBtnDown src={arrowDownGrey} alt="down button"></ImgBtnDown>
                     </ButtonDiv>}
@@ -239,17 +326,17 @@ function Thead () {
                 <ThDiv>
                     ZIP code
                     {arrowData.zipUp && arrowData.zipFocus ?
-                    <ButtonDiv onClick={() => dispatch(toggleZips())}>
+                    <ButtonDiv onClick={handleZips}>
                     <ImgBtnUp src={arrowUp} alt="up button"></ImgBtnUp>
                     <ImgBtnDown src={arrowDownGrey} alt="down button"></ImgBtnDown>
                     </ButtonDiv>
                     : !arrowData.zipUp && arrowData.zipFocus ?
-                    <ButtonDiv onClick={() => dispatch(toggleZips())}>
+                    <ButtonDiv onClick={handleZips}>
                     <ImgBtnUp src={arrowUpGrey} alt="up button"></ImgBtnUp>
                     <ImgBtnDown src={arrowDown} alt="down button"></ImgBtnDown>
                     </ButtonDiv>
                     :
-                    <ButtonDiv onClick={() => dispatch(toggleZips())}>
+                    <ButtonDiv onClick={handleZips}>
                     <ImgBtnUp src={arrowUpGrey} alt="up button"></ImgBtnUp>
                     <ImgBtnDown src={arrowDownGrey} alt="down button"></ImgBtnDown>
                     </ButtonDiv>}

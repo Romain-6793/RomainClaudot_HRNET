@@ -407,11 +407,339 @@ const userSlice = createSlice({
                 }
             }
         },
+        sortFirstNamesAZ(state, action) {
+
+            const initialArray = [...state.usersArray];
+
+            const cloneUsersArray = initialArray.sort((a, b) => (a.firstName > b.firstName) ?
+                1
+                :
+                (a.firstName < b.firstName) ?
+                    -1
+                    :
+                    0
+            )
+
+            return {
+                ...state,
+                usersArray: cloneUsersArray,
+            }
+        },
+        sortFirstNamesZA(state, action) {
+
+            const initialArray = [...state.usersArray];
+
+            const cloneUsersArray = initialArray.sort((a, b) => (a.firstName > b.firstName) ?
+                -1
+                :
+                (a.firstName < b.firstName) ?
+                    1
+                    :
+                    0
+            )
+
+            return {
+                ...state,
+                usersArray: cloneUsersArray,
+            }
+        },
+        sortLastNamesAZ(state, action) {
+
+            const initialArray = [...state.usersArray];
+
+            const cloneUsersArray = initialArray.sort((a, b) => (a.lastName > b.lastName) ?
+                1
+                :
+                (a.lastName < b.lastName) ?
+                    -1
+                    :
+                    0
+            )
+
+            return {
+                ...state,
+                usersArray: cloneUsersArray,
+            }
+        },
+        sortLastNamesZA(state, action) {
+
+            const initialArray = [...state.usersArray];
+
+            const cloneUsersArray = initialArray.sort((a, b) => (a.lastName > b.lastName) ?
+                -1
+                :
+                (a.lastName < b.lastName) ?
+                    1
+                    :
+                    0
+            )
+
+            return {
+                ...state,
+                usersArray: cloneUsersArray,
+            }
+        },
+        sortStartDatesFormer(state, action) {
+
+            const initialArray = [...state.usersArray];
+
+            const cloneUsersArray = initialArray.sort((a, b) => (a.startDate > b.startDate) ?
+                1
+                :
+                (a.startDate < b.startDate) ?
+                    -1
+                    :
+                    0
+            )
+
+            return {
+                ...state,
+                usersArray: cloneUsersArray,
+            }
+        },
+        sortStartDatesRecent(state, action) {
+
+            const initialArray = [...state.usersArray];
+
+            const cloneUsersArray = initialArray.sort((a, b) => (a.startDate > b.startDate) ?
+                -1
+                :
+                (a.startDate < b.startDate) ?
+                    1
+                    :
+                    0
+            )
+
+            return {
+                ...state,
+                usersArray: cloneUsersArray,
+            }
+        },
+        sortDepartmentsAZ(state, action) {
+
+            const initialArray = [...state.usersArray];
+
+            const cloneUsersArray = initialArray.sort((a, b) => (a.department > b.department) ?
+                1
+                :
+                (a.department < b.department) ?
+                    -1
+                    :
+                    0
+            )
+
+            return {
+                ...state,
+                usersArray: cloneUsersArray,
+            }
+        },
+        sortDepartmentsZA(state, action) {
+
+            const initialArray = [...state.usersArray];
+
+            const cloneUsersArray = initialArray.sort((a, b) => (a.department > b.department) ?
+                -1
+                :
+                (a.department < b.department) ?
+                    1
+                    :
+                    0
+            )
+
+            return {
+                ...state,
+                usersArray: cloneUsersArray,
+            }
+        },
+        sortDOBFormer(state, action) {
+
+            const initialArray = [...state.usersArray];
+
+            const cloneUsersArray = initialArray.sort((a, b) => (a.dateOfBirth > b.dateOfBirth) ?
+                1
+                :
+                (a.dateOfBirth < b.dateOfBirth) ?
+                    -1
+                    :
+                    0
+            )
+
+            return {
+                ...state,
+                usersArray: cloneUsersArray,
+            }
+        },
+        sortDOBRecent(state, action) {
+
+            const initialArray = [...state.usersArray];
+
+            const cloneUsersArray = initialArray.sort((a, b) => (a.dateOfBirth > b.dateOfBirth) ?
+                -1
+                :
+                (a.dateOfBirth < b.dateOfBirth) ?
+                    1
+                    :
+                    0
+            )
+
+            return {
+                ...state,
+                usersArray: cloneUsersArray,
+            }
+        },
+        sortStreetLow(state, action) {
+
+            const initialArray = [...state.usersArray];
+
+            const cloneUsersArray = initialArray.sort((a, b) => (a.street > b.street) ?
+                1
+                :
+                (a.street < b.street) ?
+                    -1
+                    :
+                    0
+            )
+
+            return {
+                ...state,
+                usersArray: cloneUsersArray,
+            }
+        },
+        sortStreetHigh(state, action) {
+
+            const initialArray = [...state.usersArray];
+
+            const cloneUsersArray = initialArray.sort((a, b) => (a.street > b.street) ?
+                -1
+                :
+                (a.street < b.street) ?
+                    1
+                    :
+                    0
+            )
+
+            return {
+                ...state,
+                usersArray: cloneUsersArray,
+            }
+        },
+        sortCityAZ(state, action) {
+
+            const initialArray = [...state.usersArray];
+
+            const cloneUsersArray = initialArray.sort((a, b) => (a.city > b.city) ?
+                1
+                :
+                (a.city < b.city) ?
+                    -1
+                    :
+                    0
+            )
+
+            return {
+                ...state,
+                usersArray: cloneUsersArray,
+            }
+        },
+        sortCityZA(state, action) {
+
+            const initialArray = [...state.usersArray];
+
+            const cloneUsersArray = initialArray.sort((a, b) => (a.city > b.city) ?
+                -1
+                :
+                (a.city < b.city) ?
+                    1
+                    :
+                    0
+            )
+
+            return {
+                ...state,
+                usersArray: cloneUsersArray,
+            }
+        },
+        sortStateAZ(state, action) {
+
+            const initialArray = [...state.usersArray];
+
+            const cloneUsersArray = initialArray.sort((a, b) => (a.state > b.state) ?
+                1
+                :
+                (a.state < b.state) ?
+                    -1
+                    :
+                    0
+            )
+
+            return {
+                ...state,
+                usersArray: cloneUsersArray,
+            }
+        },
+        sortStateZA(state, action) {
+
+            const initialArray = [...state.usersArray];
+
+            const cloneUsersArray = initialArray.sort((a, b) => (a.state > b.state) ?
+                -1
+                :
+                (a.state < b.state) ?
+                    1
+                    :
+                    0
+            )
+
+            return {
+                ...state,
+                usersArray: cloneUsersArray,
+            }
+        },
+        sortZipLow(state, action) {
+
+            const initialArray = [...state.usersArray];
+
+            const cloneUsersArray = initialArray.sort((a, b) => (a.zipCode > b.zipCode) ?
+                1
+                :
+                (a.zipCode < b.zipCode) ?
+                    -1
+                    :
+                    0
+            )
+
+            return {
+                ...state,
+                usersArray: cloneUsersArray,
+            }
+        },
+        sortZipHigh(state, action) {
+
+            const initialArray = [...state.usersArray];
+
+            const cloneUsersArray = initialArray.sort((a, b) => (a.zipCode > b.zipCode) ?
+                -1
+                :
+                (a.zipCode < b.zipCode) ?
+                    1
+                    :
+                    0
+            )
+
+            return {
+                ...state,
+                usersArray: cloneUsersArray,
+            }
+        },
     },
 })
 
 export const { pushUser, deleteUser, storeUsersList, unstoreUsersList, loadData,
     setRowsPerPage, toggleFirstNames, toggleLastNames, toggleStartDates, toggleDepartments,
-    toggleDatesOfBirth, toggleStreets, toggleCities, toggleStates, toggleZips } = userSlice.actions;
+    toggleDatesOfBirth, toggleStreets, toggleCities, toggleStates, toggleZips,
+    sortFirstNamesAZ, sortFirstNamesZA, sortLastNamesAZ, sortLastNamesZA, sortStartDatesFormer,
+    sortStartDatesRecent, sortDepartmentsAZ, sortDepartmentsZA, sortDOBFormer, sortDOBRecent,
+    sortStreetLow, sortStreetHigh, sortCityAZ, sortCityZA, sortStateAZ, sortStateZA,
+    sortZipLow, sortZipHigh } = userSlice.actions;
 
 export default userSlice.reducer
