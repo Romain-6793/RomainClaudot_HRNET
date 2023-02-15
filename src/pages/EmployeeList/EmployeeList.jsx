@@ -76,7 +76,7 @@ function EmployeeList () {
 
     const usersState = useSelector((state) => state.userData);
     const dispatch = useDispatch()
-    const totalArray = usersState.usersArray
+    const totalArray = usersState.filteredArray
     
 
     // We start with an empty list of items.

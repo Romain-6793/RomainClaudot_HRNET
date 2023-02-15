@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
     rowsPerPage: 10,
     usersArray: [],
+    filteredArray: [],
     arrowData: {
         firstNameFocus: true,
         lastNameFocus: false,
@@ -34,6 +35,7 @@ const userSlice = createSlice({
                 return {
                     ...state,
                     usersArray: [...state.usersArray, action.payload],
+                    filteredArray: [...state.usersArray, action.payload],
                 }
             } else {
                 return {
@@ -51,6 +53,7 @@ const userSlice = createSlice({
             return {
                 ...state,
                 usersArray: cloneUsersArray,
+                filteredArray: cloneUsersArray,
             }
         },
         storeUsersList(state, action) {
@@ -63,7 +66,7 @@ const userSlice = createSlice({
             if (data) {
                 return {
                     ...state,
-                    usersArray: JSON.parse(data).sort((a, b) => (a.firstName > b.firstName) ?
+                    filteredArray: JSON.parse(data).sort((a, b) => (a.firstName > b.firstName) ?
                         1
                         :
                         (a.firstName < b.firstName) ?
@@ -416,9 +419,9 @@ const userSlice = createSlice({
         },
         sortFirstNamesAZ(state, action) {
 
-            const initialArray = [...state.usersArray];
+            const usersArray = [...state.usersArray];
 
-            const cloneUsersArray = initialArray.sort((a, b) => (a.firstName > b.firstName) ?
+            const cloneUsersArray = usersArray.sort((a, b) => (a.firstName > b.firstName) ?
                 1
                 :
                 (a.firstName < b.firstName) ?

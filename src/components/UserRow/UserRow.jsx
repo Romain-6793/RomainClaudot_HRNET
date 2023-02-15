@@ -31,8 +31,8 @@ const StyledClose = styled.img`
 function UserRow(props) {
 
     const usersState = useSelector((state) => state.userData)
-    const usersArray = usersState.usersArray
-    const selectedUser = usersArray.find((foundUser) => foundUser.id === props.id)
+    const filteredArray = usersState.filteredArray
+    const selectedUser = filteredArray.find((foundUser) => foundUser.id === props.id)
     const dispatch = useDispatch()
 
     const handleClose = () => {
