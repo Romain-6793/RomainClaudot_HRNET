@@ -172,13 +172,8 @@ function EmployeeList () {
                         name="entries" 
                         id="entries" 
                         onChange={handleRowsChange}
-                        defaultValue={
-                            rowsPerPage === 10 ? "10" : 
-                            rowsPerPage === 25 ? "25" :
-                            rowsPerPage === 50 ? "50" :
-                            rowsPerPage === 100 ? "100" :
-                            null
-                        }>
+                        defaultValue={rowsPerPage}
+                        >
                             <option value="10">10</option>
                             <option value="25">25</option>
                             <option value="50">50</option>
