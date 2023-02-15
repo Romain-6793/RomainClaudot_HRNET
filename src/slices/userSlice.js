@@ -63,7 +63,14 @@ const userSlice = createSlice({
             if (data) {
                 return {
                     ...state,
-                    usersArray: JSON.parse(data)
+                    usersArray: JSON.parse(data).sort((a, b) => (a.firstName > b.firstName) ?
+                        1
+                        :
+                        (a.firstName < b.firstName) ?
+                            -1
+                            :
+                            0
+                    )
                 };
             } else return { ...state };
         },
@@ -731,6 +738,44 @@ const userSlice = createSlice({
                 usersArray: cloneUsersArray,
             }
         },
+        filteredSearch(state, action) {
+
+            const initialArray = [...state.usersArray];
+            const resetArray = localStorage.getItem("usersArray")
+
+            const cloneUsersArray = initialArray.filter((obj) => {
+
+                return obj.firstName.toLowerCase().includes(action.payload.toLowerCase())
+                    || obj.lastName.toLowerCase().includes(action.payload.toLowerCase())
+                    || obj.startDate.includes(action.payload)
+                    || obj.department.toLowerCase().includes(action.payload.toLowerCase())
+                    || obj.dateOfBirth.includes(action.payload)
+                    || obj.street.toLowerCase().includes(action.payload.toLowerCase())
+                    || obj.city.toLowerCase().includes(action.payload.toLowerCase())
+                    || obj.state.toLowerCase().includes(action.payload.toLowerCase())
+                    || obj.zipCode.includes(action.payload)
+            })
+
+            if (action.payload) {
+                return {
+                    ...state,
+                    usersArray: cloneUsersArray,
+                }
+            } else {
+                return {
+                    ...state,
+                    usersArray: JSON.parse(resetArray).sort((a, b) => (a.firstName > b.firstName) ?
+                        1
+                        :
+                        (a.firstName < b.firstName) ?
+                            -1
+                            :
+                            0
+                    ),
+
+                }
+            }
+        },
     },
 })
 
@@ -740,6 +785,6 @@ export const { pushUser, deleteUser, storeUsersList, unstoreUsersList, loadData,
     sortFirstNamesAZ, sortFirstNamesZA, sortLastNamesAZ, sortLastNamesZA, sortStartDatesFormer,
     sortStartDatesRecent, sortDepartmentsAZ, sortDepartmentsZA, sortDOBFormer, sortDOBRecent,
     sortStreetLow, sortStreetHigh, sortCityAZ, sortCityZA, sortStateAZ, sortStateZA,
-    sortZipLow, sortZipHigh } = userSlice.actions;
+    sortZipLow, sortZipHigh, filteredSearch } = userSlice.actions;
 
 export default userSlice.reducer

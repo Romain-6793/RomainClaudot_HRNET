@@ -8,6 +8,7 @@ import UserRow from "../../components/UserRow/UserRow"
 import "../../utils/style/paginate.css"
 import useWindowSize from "../../utils/hooks/useWindowSize"
 import Thead from "../../components/Thead/Thead"
+import { filteredSearch } from "../../slices/userSlice"
 
 const PageContainer = styled.div`
 width: 100%;
@@ -156,6 +157,11 @@ function EmployeeList () {
         dispatch(setRowsPerPage(Number(e.target.value)))
         
     };
+    const handleSearch = (e) => {
+
+        dispatch(filteredSearch(e.target.value))
+
+    }
     return (
         <PageContainer>
             <PageMain>
@@ -182,7 +188,7 @@ function EmployeeList () {
                     </div>
                     <div>
                         <span>Search:</span>
-                        <input type="search"></input>
+                        <input type="search" onChange={handleSearch}></input>
                     </div>
                 </TableHeader>
                 <StyledTable>
