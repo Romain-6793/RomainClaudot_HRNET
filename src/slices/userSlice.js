@@ -95,34 +95,15 @@ const userSlice = createSlice({
                 return {
                     ...state,
                     arrowData: {
-                        ...state.arrowData,
+                        ...initialState.arrowData,
                         firstNameUp: false,
-                        firstNameFocus: true,
-                        lastNameFocus: false,
-                        startDateFocus: false,
-                        departmentFocus: false,
-                        dateOfBirthFocus: false,
-                        streetFocus: false,
-                        cityFocus: false,
-                        stateFocus: false,
-                        zipFocus: false,
                     },
                 }
             } else {
                 return {
                     ...state,
                     arrowData: {
-                        ...state.arrowData,
-                        firstNameUp: true,
-                        firstNameFocus: true,
-                        lastNameFocus: false,
-                        startDateFocus: false,
-                        departmentFocus: false,
-                        dateOfBirthFocus: false,
-                        streetFocus: false,
-                        cityFocus: false,
-                        stateFocus: false,
-                        zipFocus: false,
+                        ...initialState.arrowData,
                     },
                 }
             }
@@ -132,34 +113,21 @@ const userSlice = createSlice({
                 return {
                     ...state,
                     arrowData: {
-                        ...state.arrowData,
-                        lastNameUp: false,
+                        ...initialState.arrowData,
+                        firstNameUp: false,
                         firstNameFocus: false,
                         lastNameFocus: true,
-                        startDateFocus: false,
-                        departmentFocus: false,
-                        dateOfBirthFocus: false,
-                        streetFocus: false,
-                        cityFocus: false,
-                        stateFocus: false,
-                        zipFocus: false,
                     },
                 }
             } else {
                 return {
                     ...state,
                     arrowData: {
-                        ...state.arrowData,
-                        lastNameUp: true,
+                        ...initialState.arrowData,
+                        firstNameUp: false,
                         firstNameFocus: false,
+                        lastNameUp: true,
                         lastNameFocus: true,
-                        startDateFocus: false,
-                        departmentFocus: false,
-                        dateOfBirthFocus: false,
-                        streetFocus: false,
-                        cityFocus: false,
-                        stateFocus: false,
-                        zipFocus: false,
                     },
                 }
             }
@@ -169,34 +137,21 @@ const userSlice = createSlice({
                 return {
                     ...state,
                     arrowData: {
-                        ...state.arrowData,
-                        startDateUp: false,
+                        ...initialState.arrowData,
+                        firstNameUp: false,
                         firstNameFocus: false,
-                        lastNameFocus: false,
                         startDateFocus: true,
-                        departmentFocus: false,
-                        dateOfBirthFocus: false,
-                        streetFocus: false,
-                        cityFocus: false,
-                        stateFocus: false,
-                        zipFocus: false,
                     },
                 }
             } else {
                 return {
                     ...state,
                     arrowData: {
-                        ...state.arrowData,
-                        startDateUp: true,
+                        ...initialState.arrowData,
+                        firstNameUp: false,
                         firstNameFocus: false,
-                        lastNameFocus: false,
+                        startDateUp: true,
                         startDateFocus: true,
-                        departmentFocus: false,
-                        dateOfBirthFocus: false,
-                        streetFocus: false,
-                        cityFocus: false,
-                        stateFocus: false,
-                        zipFocus: false,
                     },
                 }
             }
@@ -206,34 +161,21 @@ const userSlice = createSlice({
                 return {
                     ...state,
                     arrowData: {
-                        ...state.arrowData,
-                        departmentUp: false,
+                        ...initialState.arrowData,
+                        firstNameUp: false,
                         firstNameFocus: false,
-                        lastNameFocus: false,
-                        startDateFocus: false,
                         departmentFocus: true,
-                        dateOfBirthFocus: false,
-                        streetFocus: false,
-                        cityFocus: false,
-                        stateFocus: false,
-                        zipFocus: false,
                     },
                 }
             } else {
                 return {
                     ...state,
                     arrowData: {
-                        ...state.arrowData,
-                        departmentUp: true,
+                        ...initialState.arrowData,
+                        firstNameUp: false,
                         firstNameFocus: false,
-                        lastNameFocus: false,
-                        startDateFocus: false,
+                        departmentUp: true,
                         departmentFocus: true,
-                        dateOfBirthFocus: false,
-                        streetFocus: false,
-                        cityFocus: false,
-                        stateFocus: false,
-                        zipFocus: false,
                     },
                 }
             }
@@ -243,34 +185,21 @@ const userSlice = createSlice({
                 return {
                     ...state,
                     arrowData: {
-                        ...state.arrowData,
-                        dateOfBirthUp: false,
+                        ...initialState.arrowData,
+                        firstNameUp: false,
                         firstNameFocus: false,
-                        lastNameFocus: false,
-                        startDateFocus: false,
-                        departmentFocus: false,
                         dateOfBirthFocus: true,
-                        streetFocus: false,
-                        cityFocus: false,
-                        stateFocus: false,
-                        zipFocus: false,
                     },
                 }
             } else {
                 return {
                     ...state,
                     arrowData: {
-                        ...state.arrowData,
-                        dateOfBirthUp: true,
+                        ...initialState.arrowData,
+                        firstNameUp: false,
                         firstNameFocus: false,
-                        lastNameFocus: false,
-                        startDateFocus: false,
-                        departmentFocus: false,
+                        dateOfBirthUp: true,
                         dateOfBirthFocus: true,
-                        streetFocus: false,
-                        cityFocus: false,
-                        stateFocus: false,
-                        zipFocus: false,
                     },
                 }
             }
@@ -280,34 +209,21 @@ const userSlice = createSlice({
                 return {
                     ...state,
                     arrowData: {
-                        ...state.arrowData,
-                        streetUp: false,
+                        ...initialState.arrowData,
+                        firstNameUp: false,
                         firstNameFocus: false,
-                        lastNameFocus: false,
-                        startDateFocus: false,
-                        departmentFocus: false,
-                        dateOfBirthFocus: false,
                         streetFocus: true,
-                        cityFocus: false,
-                        stateFocus: false,
-                        zipFocus: false,
                     },
                 }
             } else {
                 return {
                     ...state,
                     arrowData: {
-                        ...state.arrowData,
-                        streetUp: true,
+                        ...initialState.arrowData,
+                        firstNameUp: false,
                         firstNameFocus: false,
-                        lastNameFocus: false,
-                        startDateFocus: false,
-                        departmentFocus: false,
-                        dateOfBirthFocus: false,
+                        streetUp: true,
                         streetFocus: true,
-                        cityFocus: false,
-                        stateFocus: false,
-                        zipFocus: false,
                     },
                 }
             }
@@ -317,34 +233,21 @@ const userSlice = createSlice({
                 return {
                     ...state,
                     arrowData: {
-                        ...state.arrowData,
-                        cityUp: false,
+                        ...initialState.arrowData,
+                        firstNameUp: false,
                         firstNameFocus: false,
-                        lastNameFocus: false,
-                        startDateFocus: false,
-                        departmentFocus: false,
-                        dateOfBirthFocus: false,
-                        streetFocus: false,
                         cityFocus: true,
-                        stateFocus: false,
-                        zipFocus: false,
                     },
                 }
             } else {
                 return {
                     ...state,
                     arrowData: {
-                        ...state.arrowData,
-                        cityUp: true,
+                        ...initialState.arrowData,
+                        firstNameUp: false,
                         firstNameFocus: false,
-                        lastNameFocus: false,
-                        startDateFocus: false,
-                        departmentFocus: false,
-                        dateOfBirthFocus: false,
-                        streetFocus: false,
+                        cityUp: true,
                         cityFocus: true,
-                        stateFocus: false,
-                        zipFocus: false,
                     },
                 }
             }
@@ -354,34 +257,21 @@ const userSlice = createSlice({
                 return {
                     ...state,
                     arrowData: {
-                        ...state.arrowData,
-                        stateUp: false,
+                        ...initialState.arrowData,
+                        firstNameUp: false,
                         firstNameFocus: false,
-                        lastNameFocus: false,
-                        startDateFocus: false,
-                        departmentFocus: false,
-                        dateOfBirthFocus: false,
-                        streetFocus: false,
-                        cityFocus: false,
                         stateFocus: true,
-                        zipFocus: false,
                     },
                 }
             } else {
                 return {
                     ...state,
                     arrowData: {
-                        ...state.arrowData,
-                        stateUp: true,
+                        ...initialState.arrowData,
+                        firstNameUp: false,
                         firstNameFocus: false,
-                        lastNameFocus: false,
-                        startDateFocus: false,
-                        departmentFocus: false,
-                        dateOfBirthFocus: false,
-                        streetFocus: false,
-                        cityFocus: false,
+                        stateUp: true,
                         stateFocus: true,
-                        zipFocus: false,
                     },
                 }
             }
@@ -391,16 +281,9 @@ const userSlice = createSlice({
                 return {
                     ...state,
                     arrowData: {
-                        ...state.arrowData,
-                        zipUp: false,
+                        ...initialState.arrowData,
+                        firstNameUp: false,
                         firstNameFocus: false,
-                        lastNameFocus: false,
-                        startDateFocus: false,
-                        departmentFocus: false,
-                        dateOfBirthFocus: false,
-                        streetFocus: false,
-                        cityFocus: false,
-                        stateFocus: false,
                         zipFocus: true,
                     },
                 }
@@ -408,16 +291,10 @@ const userSlice = createSlice({
                 return {
                     ...state,
                     arrowData: {
-                        ...state.arrowData,
-                        zipUp: true,
+                        ...initialState.arrowData,
+                        firstNameUp: false,
                         firstNameFocus: false,
-                        lastNameFocus: false,
-                        startDateFocus: false,
-                        departmentFocus: false,
-                        dateOfBirthFocus: false,
-                        streetFocus: false,
-                        cityFocus: false,
-                        stateFocus: false,
+                        zipUp: true,
                         zipFocus: true,
                     },
                 }
