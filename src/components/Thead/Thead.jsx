@@ -6,11 +6,7 @@ import arrowUpGrey from "../../assets/arrow-up-grey.svg"
 import arrowDownGrey from "../../assets/arrow-down-grey.svg"
 import { toggleFirstNames, toggleLastNames, toggleStartDates, 
 toggleDepartments, toggleDatesOfBirth, toggleStreets, toggleCities,
-toggleStates, toggleZips, sortFirstNamesAZ, sortFirstNamesZA,
-sortLastNamesAZ, sortLastNamesZA, sortStartDatesFormer, sortStartDatesRecent,
-sortDepartmentsAZ, sortDepartmentsZA, sortDOBFormer, sortDOBRecent,
-sortStreetLow, sortStreetHigh, sortCityAZ, sortCityZA, sortStateAZ,
-sortStateZA, sortZipLow, sortZipHigh } from "../../slices/userSlice"
+toggleStates, toggleZips, sortData } from "../../slices/userSlice"
 
 
 const StyledThead = styled.thead`
@@ -73,9 +69,9 @@ function Thead () {
         dispatch(toggleFirstNames())
 
         if (!arrowData.firstNameUp) {
-            dispatch(sortFirstNamesAZ())
+            dispatch(sortData({key:'firstName', direction : true}))
         } else {
-            dispatch(sortFirstNamesZA())
+            dispatch(sortData({key:'firstName', direction : false}))
         }
     }
 
@@ -83,9 +79,9 @@ function Thead () {
         dispatch(toggleLastNames())
 
         if (!arrowData.lastNameUp) {
-            dispatch(sortLastNamesAZ())
+            dispatch(sortData({key:'lastName', direction : true}))
         } else {
-            dispatch(sortLastNamesZA())
+            dispatch(sortData({key:'lastName', direction : false}))
         }
     }
 
@@ -93,9 +89,9 @@ function Thead () {
         dispatch(toggleStartDates())
 
         if (!arrowData.startDateUp) {
-            dispatch(sortStartDatesFormer())
+            dispatch(sortData({key:'startDate', direction : true}))
         } else {
-            dispatch(sortStartDatesRecent())
+            dispatch(sortData({key:'startDate', direction : false}))
         }
     }
 
@@ -103,9 +99,9 @@ function Thead () {
         dispatch(toggleDepartments())
 
         if (!arrowData.departmentUp) {
-            dispatch(sortDepartmentsAZ())
+            dispatch(sortData({key:'department', direction : true}))
         } else {
-            dispatch(sortDepartmentsZA())
+            dispatch(sortData({key:'department', direction : false}))
         }
     }
 
@@ -113,9 +109,9 @@ function Thead () {
         dispatch(toggleDatesOfBirth())
 
         if (!arrowData.dateOfBirthUp) {
-            dispatch(sortDOBFormer())
+            dispatch(sortData({key:'dateOfBirth', direction : true}))
         } else {
-            dispatch(sortDOBRecent())
+            dispatch(sortData({key:'dateOfBirth', direction : false}))
         }
     }
 
@@ -123,9 +119,9 @@ function Thead () {
         dispatch(toggleStreets())
 
         if (!arrowData.streetUp) {
-            dispatch(sortStreetLow())
+            dispatch(sortData({key:'street', direction : true}))
         } else {
-            dispatch(sortStreetHigh())
+            dispatch(sortData({key:'street', direction : false}))
         }
     }
 
@@ -133,9 +129,9 @@ function Thead () {
         dispatch(toggleCities())
 
         if (!arrowData.cityUp) {
-            dispatch(sortCityAZ())
+            dispatch(sortData({key:'city', direction : true}))
         } else {
-            dispatch(sortCityZA())
+            dispatch(sortData({key:'city', direction : false}))
         }
     }
 
@@ -143,9 +139,9 @@ function Thead () {
         dispatch(toggleStates())
 
         if (!arrowData.stateUp) {
-            dispatch(sortStateAZ())
+            dispatch(sortData({key:'state', direction : true}))
         } else {
-            dispatch(sortStateZA())
+            dispatch(sortData({key:'state', direction : false}))
         }
     }
 
@@ -153,9 +149,9 @@ function Thead () {
         dispatch(toggleZips())
 
         if (!arrowData.zipUp) {
-            dispatch(sortZipLow())
+            dispatch(sortData({key:'zipCode', direction : true}))
         } else {
-            dispatch(sortZipHigh())
+            dispatch(sortData({key:'zipCode', direction : false}))
         }
     }
 

@@ -35,12 +35,17 @@ const userSlice = createSlice({
                 return {
                     ...state,
                     usersArray: [...state.usersArray, action.payload],
-                    filteredArray: [...state.usersArray, action.payload],
                 }
             } else {
                 return {
                     ...state
                 }
+            }
+        },
+        updateFilteredArray(state, action) {
+            return {
+                ...state,
+                filteredArray: [...state.usersArray],
             }
         },
         deleteUser(state, action) {
@@ -66,6 +71,7 @@ const userSlice = createSlice({
             if (data) {
                 return {
                     ...state,
+                    usersArray: JSON.parse(data),
                     filteredArray: JSON.parse(data).sort((a, b) => (a.firstName > b.firstName) ?
                         1
                         :
@@ -417,328 +423,31 @@ const userSlice = createSlice({
                 }
             }
         },
-        sortFirstNamesAZ(state, action) {
-
-            const usersArray = [...state.usersArray];
-
-            const cloneUsersArray = usersArray.sort((a, b) => (a.firstName > b.firstName) ?
+        sortData(state, action) {
+            const stringSort = (values, key) => values.sort((a, b) => (a[key] > b[key]) ?
                 1
                 :
-                (a.firstName < b.firstName) ?
+                (a[key] < b[key]) ?
                     -1
                     :
                     0
             )
 
-            return {
-                ...state,
-                usersArray: cloneUsersArray,
+            const getSort = (key, direction) => {
+
+                const filteredArray = [...state.filteredArray]
+
+                const res = stringSort(filteredArray, action.payload.key);
+                console.log(action.payload.key)
+                console.log(res)
+                // That last line of return gives me a Boolean which will be my direction, If true for example
+                // I get my sorted array, if false, I get the reverse.
+                return Boolean(direction) ? res : res.reverse();
             }
-        },
-        sortFirstNamesZA(state, action) {
-
-            const initialArray = [...state.usersArray];
-
-            const cloneUsersArray = initialArray.sort((a, b) => (a.firstName > b.firstName) ?
-                -1
-                :
-                (a.firstName < b.firstName) ?
-                    1
-                    :
-                    0
-            )
 
             return {
                 ...state,
-                usersArray: cloneUsersArray,
-            }
-        },
-        sortLastNamesAZ(state, action) {
-
-            const initialArray = [...state.usersArray];
-
-            const cloneUsersArray = initialArray.sort((a, b) => (a.lastName > b.lastName) ?
-                1
-                :
-                (a.lastName < b.lastName) ?
-                    -1
-                    :
-                    0
-            )
-
-            return {
-                ...state,
-                usersArray: cloneUsersArray,
-            }
-        },
-        sortLastNamesZA(state, action) {
-
-            const initialArray = [...state.usersArray];
-
-            const cloneUsersArray = initialArray.sort((a, b) => (a.lastName > b.lastName) ?
-                -1
-                :
-                (a.lastName < b.lastName) ?
-                    1
-                    :
-                    0
-            )
-
-            return {
-                ...state,
-                usersArray: cloneUsersArray,
-            }
-        },
-        sortStartDatesFormer(state, action) {
-
-            const initialArray = [...state.usersArray];
-
-            const cloneUsersArray = initialArray.sort((a, b) => (a.startDate > b.startDate) ?
-                1
-                :
-                (a.startDate < b.startDate) ?
-                    -1
-                    :
-                    0
-            )
-
-            return {
-                ...state,
-                usersArray: cloneUsersArray,
-            }
-        },
-        sortStartDatesRecent(state, action) {
-
-            const initialArray = [...state.usersArray];
-
-            const cloneUsersArray = initialArray.sort((a, b) => (a.startDate > b.startDate) ?
-                -1
-                :
-                (a.startDate < b.startDate) ?
-                    1
-                    :
-                    0
-            )
-
-            return {
-                ...state,
-                usersArray: cloneUsersArray,
-            }
-        },
-        sortDepartmentsAZ(state, action) {
-
-            const initialArray = [...state.usersArray];
-
-            const cloneUsersArray = initialArray.sort((a, b) => (a.department > b.department) ?
-                1
-                :
-                (a.department < b.department) ?
-                    -1
-                    :
-                    0
-            )
-
-            return {
-                ...state,
-                usersArray: cloneUsersArray,
-            }
-        },
-        sortDepartmentsZA(state, action) {
-
-            const initialArray = [...state.usersArray];
-
-            const cloneUsersArray = initialArray.sort((a, b) => (a.department > b.department) ?
-                -1
-                :
-                (a.department < b.department) ?
-                    1
-                    :
-                    0
-            )
-
-            return {
-                ...state,
-                usersArray: cloneUsersArray,
-            }
-        },
-        sortDOBFormer(state, action) {
-
-            const initialArray = [...state.usersArray];
-
-            const cloneUsersArray = initialArray.sort((a, b) => (a.dateOfBirth > b.dateOfBirth) ?
-                1
-                :
-                (a.dateOfBirth < b.dateOfBirth) ?
-                    -1
-                    :
-                    0
-            )
-
-            return {
-                ...state,
-                usersArray: cloneUsersArray,
-            }
-        },
-        sortDOBRecent(state, action) {
-
-            const initialArray = [...state.usersArray];
-
-            const cloneUsersArray = initialArray.sort((a, b) => (a.dateOfBirth > b.dateOfBirth) ?
-                -1
-                :
-                (a.dateOfBirth < b.dateOfBirth) ?
-                    1
-                    :
-                    0
-            )
-
-            return {
-                ...state,
-                usersArray: cloneUsersArray,
-            }
-        },
-        sortStreetLow(state, action) {
-
-            const initialArray = [...state.usersArray];
-
-            const cloneUsersArray = initialArray.sort((a, b) => (a.street > b.street) ?
-                1
-                :
-                (a.street < b.street) ?
-                    -1
-                    :
-                    0
-            )
-
-            return {
-                ...state,
-                usersArray: cloneUsersArray,
-            }
-        },
-        sortStreetHigh(state, action) {
-
-            const initialArray = [...state.usersArray];
-
-            const cloneUsersArray = initialArray.sort((a, b) => (a.street > b.street) ?
-                -1
-                :
-                (a.street < b.street) ?
-                    1
-                    :
-                    0
-            )
-
-            return {
-                ...state,
-                usersArray: cloneUsersArray,
-            }
-        },
-        sortCityAZ(state, action) {
-
-            const initialArray = [...state.usersArray];
-
-            const cloneUsersArray = initialArray.sort((a, b) => (a.city > b.city) ?
-                1
-                :
-                (a.city < b.city) ?
-                    -1
-                    :
-                    0
-            )
-
-            return {
-                ...state,
-                usersArray: cloneUsersArray,
-            }
-        },
-        sortCityZA(state, action) {
-
-            const initialArray = [...state.usersArray];
-
-            const cloneUsersArray = initialArray.sort((a, b) => (a.city > b.city) ?
-                -1
-                :
-                (a.city < b.city) ?
-                    1
-                    :
-                    0
-            )
-
-            return {
-                ...state,
-                usersArray: cloneUsersArray,
-            }
-        },
-        sortStateAZ(state, action) {
-
-            const initialArray = [...state.usersArray];
-
-            const cloneUsersArray = initialArray.sort((a, b) => (a.state > b.state) ?
-                1
-                :
-                (a.state < b.state) ?
-                    -1
-                    :
-                    0
-            )
-
-            return {
-                ...state,
-                usersArray: cloneUsersArray,
-            }
-        },
-        sortStateZA(state, action) {
-
-            const initialArray = [...state.usersArray];
-
-            const cloneUsersArray = initialArray.sort((a, b) => (a.state > b.state) ?
-                -1
-                :
-                (a.state < b.state) ?
-                    1
-                    :
-                    0
-            )
-
-            return {
-                ...state,
-                usersArray: cloneUsersArray,
-            }
-        },
-        sortZipLow(state, action) {
-
-            const initialArray = [...state.usersArray];
-
-            const cloneUsersArray = initialArray.sort((a, b) => (a.zipCode > b.zipCode) ?
-                1
-                :
-                (a.zipCode < b.zipCode) ?
-                    -1
-                    :
-                    0
-            )
-
-            return {
-                ...state,
-                usersArray: cloneUsersArray,
-            }
-        },
-        sortZipHigh(state, action) {
-
-            const initialArray = [...state.usersArray];
-
-            const cloneUsersArray = initialArray.sort((a, b) => (a.zipCode > b.zipCode) ?
-                -1
-                :
-                (a.zipCode < b.zipCode) ?
-                    1
-                    :
-                    0
-            )
-
-            return {
-                ...state,
-                usersArray: cloneUsersArray,
+                filteredArray: getSort(action.payload.key, action.payload.direction)
             }
         },
         filteredSearch(state, action) {
@@ -782,12 +491,9 @@ const userSlice = createSlice({
     },
 })
 
-export const { pushUser, deleteUser, storeUsersList, unstoreUsersList, loadData,
+export const { pushUser, updateFilteredArray, deleteUser, storeUsersList, unstoreUsersList, loadData,
     setRowsPerPage, toggleFirstNames, toggleLastNames, toggleStartDates, toggleDepartments,
     toggleDatesOfBirth, toggleStreets, toggleCities, toggleStates, toggleZips,
-    sortFirstNamesAZ, sortFirstNamesZA, sortLastNamesAZ, sortLastNamesZA, sortStartDatesFormer,
-    sortStartDatesRecent, sortDepartmentsAZ, sortDepartmentsZA, sortDOBFormer, sortDOBRecent,
-    sortStreetLow, sortStreetHigh, sortCityAZ, sortCityZA, sortStateAZ, sortStateZA,
-    sortZipLow, sortZipHigh, filteredSearch } = userSlice.actions;
+    filteredSearch, sortData } = userSlice.actions;
 
 export default userSlice.reducer

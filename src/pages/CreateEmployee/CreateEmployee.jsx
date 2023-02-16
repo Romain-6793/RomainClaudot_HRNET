@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 import styled from "styled-components"
 import colors from "../../utils/style/colors"
 import SelectState from "../../components/SelectState/SelectState"
-import {pushUser, storeUsersList} from "../../slices/userSlice"
+import {pushUser, storeUsersList, updateFilteredArray} from "../../slices/userSlice"
 import closeIcon from "../../assets/close.svg"
 
 const SuperContainer = styled.div`
@@ -122,6 +122,7 @@ function CreateEmployee () {
             ...formUser,
         }
         dispatch(pushUser(newUser))
+        dispatch(updateFilteredArray())
         dispatch(storeUsersList())
         setIsCreated(true)
         resetform()
