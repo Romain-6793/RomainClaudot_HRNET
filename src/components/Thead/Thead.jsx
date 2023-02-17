@@ -13,13 +13,13 @@ const StyledThead = styled.thead`
 margin-bottom: 50px;
 font-size: 10px;
 @media (max-width: 767px) {
-    font-size: 8px;
-}
-@media (max-width: 424px) {
     font-size: 7px;
 }
+@media (max-width: 424px) {
+    font-size: 5px;
+}
 @media (max-width: 374px) {
-    font-size: 6px;
+    font-size: 4px;
 }
 `
 
@@ -30,12 +30,15 @@ outline: thin solid;
 
 const StyledTh = styled.th`
 margin-right: 5px;
-padding-left: 10px;
 `
 
 const ThDiv = styled.div`
 display: flex;
 flex-flow: row wrap;
+margin-left: 10%;
+@media (max-width: 1023px) {
+    margin-left: 5%;
+}
 `
 
 const ButtonDiv = styled.div`

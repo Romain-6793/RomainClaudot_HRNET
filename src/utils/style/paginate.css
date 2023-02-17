@@ -74,4 +74,8 @@ li {
     .active {
         background : linear-gradient(#dcdcdc,#93ad18);
     }
+    .grey-prev-link, .grey-next-link {
+        display: block;
+        margin-top: 1px;
+    }
 }

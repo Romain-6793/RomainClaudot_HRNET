@@ -24,6 +24,12 @@ margin-top: 50px;
 margin-bottom: 50px;
 `
 
+const StyledTitle = styled.h2`
+color: ${colors.globaltext};
+font-weight: bold;
+font-size: 36px;
+`
+
 const TableHeader = styled.div`
 width: 100%;
 display: flex;
@@ -43,10 +49,10 @@ color: ${colors.globaltext};
 const StyledTbody = styled.tbody`
 font-size: 10px;
 @media (max-width: 767px) {
-    font-size: 8px;
+    font-size: 6px;
 }
 @media (max-width: 424px) {
-    font-size: 6px;
+    font-size: 4px;
 }
 `
 
@@ -76,8 +82,10 @@ function EmployeeList () {
 
     const usersState = useSelector((state) => state.userData);
     const dispatch = useDispatch()
+    const usersArray = usersState.usersArray
     const totalArray = usersState.filteredArray
     
+    const [inSearch, setInSearch] = useState(false)
 
     // We start with an empty list of items.
     const [currentRows, setCurrentRows] = useState(null);
@@ -91,21 +99,12 @@ function EmployeeList () {
 
     const rowsPerPage = usersState.rowsPerPage
 
-    // const size = useWindowSize()
-    // const [isSmall, setIsSmall] = useState({ matches: size.width("(max-width: 767px)").matches });
+    const windowSize = useWindowSize()
     const [isFirstPage, setIsFirstPage] = useState(true)
     const [isLastPage, setIsLastPage] = useState(false)
     const [isLargerThanTotal, setIsLargerThanTotal] = useState(false)
 
     const endOffset = rowOffset + rowsPerPage
-
-    // function screenListener() {
-    //     const handler = e => setIsSmall({ matches: e.matches });
-    //     window.matchMedia("(max-width: 767px)").addEventListener('change', handler);
-    // }
-
-    // screenListener()
-
 
     useEffect(() => {
         // Fetch items from another resources.
@@ -161,10 +160,17 @@ function EmployeeList () {
 
         dispatch(filteredSearch(e.target.value))
 
+        if (e.target.value) {
+            setInSearch(true)
+        } else {
+            setInSearch(false)
+        }
+
     }
     return (
         <PageContainer>
             <PageMain>
+                <StyledTitle>Current Employees</StyledTitle>
                 <TableHeader>
                     <div>
                         <span>Show </span>
@@ -213,17 +219,15 @@ function EmployeeList () {
                         :
                         <span>Showing {rowOffset + 1} to {endOffset} of {totalArray.length} entries</span>
                         }
-                        <span>(filtered from x entries)</span>
+                        {inSearch ? <span> (filtered from {usersArray.length} total entries)</span> : null }    
                     </TableLegend>
                     <ReactPaginate
-                    // nextLabel={isSmall.matches ? ">>" : "Next"}
-                    nextLabel="Next"
+                    nextLabel={windowSize.width < 767 ? ">>" : "Next"}
                     onPageChange={handlePageClick}
                     pageRangeDisplayed={3}
                     marginPagesDisplayed={2}
                     pageCount={pageCount}
-                    // previousLabel={isSmall.matches ? "<<" : "Previous"}
-                    previousLabel="Previous"
+                    previousLabel={windowSize.width < 767 ? "<<" : "Previous"}
                     pageClassName="page-item"
                     pageLinkClassName="page-link"
                     previousClassName="page-prev-item"

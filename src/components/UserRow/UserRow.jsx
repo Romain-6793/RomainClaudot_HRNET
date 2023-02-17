@@ -28,6 +28,12 @@ const StyledClose = styled.img`
 }
 `
 
+const StyledTd = styled.td`
+max-width: 11.11%;
+overflow: hidden;
+text-overflow: ellipsis;
+`
+
 function UserRow(props) {
 
     const usersState = useSelector((state) => state.userData)
@@ -42,15 +48,15 @@ function UserRow(props) {
 
     return (
         <tr>
-            <td>{props.firstName}</td>
-            <td>{props.lastName}</td>
-            <td>{props.startDate}</td>
-            <td>{props.department}</td>
-            <td>{props.dateOfBirth}</td>
-            <td>{props.street}</td>
-            <td>{props.city}</td>
-            <td>{props.state}</td>
-            <td>{props.zipCode}</td>
+            <StyledTd>{props.firstName}</StyledTd>
+            <StyledTd>{props.lastName}</StyledTd>
+            <StyledTd>{props.startDate}</StyledTd>
+            <StyledTd>{props.department}</StyledTd>
+            <StyledTd>{props.dateOfBirth}</StyledTd>
+            <StyledTd>{props.street}</StyledTd>
+            <StyledTd>{props.city}</StyledTd>
+            <StyledTd>{props.state}</StyledTd>
+            <StyledTd>{props.zipCode}</StyledTd>
             <td>
                 <StyledButton onClick={handleClose}><StyledClose src={closeIcon} alt="close"></StyledClose>
                 </StyledButton>

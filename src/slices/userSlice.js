@@ -348,12 +348,12 @@ const userSlice = createSlice({
             if (action.payload) {
                 return {
                     ...state,
-                    usersArray: cloneUsersArray,
+                    filteredArray: cloneUsersArray,
                 }
             } else {
                 return {
                     ...state,
-                    usersArray: JSON.parse(resetArray).sort((a, b) => (a.firstName > b.firstName) ?
+                    filteredArray: JSON.parse(resetArray).sort((a, b) => (a.firstName > b.firstName) ?
                         1
                         :
                         (a.firstName < b.firstName) ?
