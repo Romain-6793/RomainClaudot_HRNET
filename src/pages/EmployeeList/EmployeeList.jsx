@@ -12,6 +12,7 @@ import { filteredSearch } from "../../slices/userSlice"
 
 const PageContainer = styled.div`
 width: 100%;
+min-height: 700px;
 display: flex;
 flex-flow: column wrap;
 align-items: center;
