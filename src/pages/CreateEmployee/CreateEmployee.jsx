@@ -2,8 +2,9 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import styled from "styled-components"
 import colors from "../../utils/style/colors"
-import SelectState from "../../components/SelectState/SelectState"
+// import StateOptions from "../../components/Dropdowns/StateOptions"
 import {pushUser, storeUsersList, updateFilteredArray} from "../../slices/userSlice"
+import "../../utils/style/dropdown.css"
 import closeIcon from "../../assets/close.svg"
 
 const SuperContainer = styled.div`
@@ -171,8 +172,22 @@ function CreateEmployee () {
                             <input id="city" type="text"/>
                             <br></br>
                             <label htmlFor="state">State</label><br></br>
-                            <SelectState>
-                            </SelectState><br></br>
+                            {/* <SelectState>
+                            </SelectState> */}
+                            {/* <SimplestDropdown 
+                            placeHolder="Select..."
+                            options={StateOptions}
+                            containerClassName = "dropdownContainer"
+                            inputClassName = "dropdownInput"
+                            selectedValueClassName = "selectedValue"
+                            toolClassName = "dropdownTool"
+                            shownMenuClassName = "shownMenu"
+                            menuClassName = "dropdownMenu"
+                            itemClassName = "dropdownItem"
+                            itemSelectedClassName = "dropdownItemSelected"
+                            >
+                            </SimplestDropdown> */}
+                            <br></br>
                             <label htmlFor="zipCode">Zip Code</label><br></br>
                             <input id="zipCode" type="number"/>
                             <br></br>
