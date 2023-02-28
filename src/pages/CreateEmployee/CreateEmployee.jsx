@@ -6,6 +6,7 @@ import colors from "../../utils/style/colors"
 import {pushUser, storeUsersList, updateFilteredArray} from "../../slices/userSlice"
 import "../../utils/style/dropdown.css"
 import closeIcon from "../../assets/close.svg"
+import SimpleDropDown from "romain-6793-react-simple-dropdown"
 
 const SuperContainer = styled.div`
 width: 100%;
@@ -174,6 +175,7 @@ function CreateEmployee () {
                             <label htmlFor="state">State</label><br></br>
                             {/* <SelectState>
                             </SelectState> */}
+                            <SimpleDropDown></SimpleDropDown>
                             {/* <SimplestDropdown 
                             placeHolder="Select..."
                             options={StateOptions}
