@@ -34,6 +34,9 @@ margin-right: 0.5rem;
 font-weight: bold;
 font-size: 18px;
 color: ${colors.globaltext}
+&:visited {
+  color: ${colors.globaltext}
+}
 &:focus {
   color: ${colors.globaltext}
 }
