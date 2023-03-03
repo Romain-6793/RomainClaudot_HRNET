@@ -17,6 +17,7 @@
   .dropdownInput {
     padding: 5px;
     display: flex;
+    background: #fff;
     align-items: center;
     justify-content: space-between;
     user-select: none;

@@ -154,6 +154,7 @@ function EmployeeList () {
     };
     const handleRowsChange = (e) => {
 
+        console.log(e.target.value)
         dispatch(setRowsPerPage(Number(e.target.value)))
         
     };

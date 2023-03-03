@@ -2,11 +2,13 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import styled from "styled-components"
 import colors from "../../utils/style/colors"
-// import StateOptions from "../../components/Dropdowns/StateOptions"
+import DptOptions from "../../components/Dropdowns/DptOptions"
+import StateOptions from "../../components/Dropdowns/StateOptions"
 import {pushUser, storeUsersList, updateFilteredArray} from "../../slices/userSlice"
 import "../../utils/style/dropdown.css"
 import closeIcon from "../../assets/close.svg"
-import SimpleDropDown from "romain-6793-react-simple-dropdown"
+// import SimpleDropdown from "romain-6793-react-simple-dropdown"
+import Dropdown from "../../SimpleDropdown/Dropdown"
 
 const SuperContainer = styled.div`
 width: 100%;
@@ -88,7 +90,11 @@ justify-content: center;
 cursor: pointer;
 `
 
+
+
 function CreateEmployee () {
+
+    console.log(StateOptions)
 
     const dispatch = useDispatch()
 
@@ -114,6 +120,8 @@ function CreateEmployee () {
 
         const formUser = Object.values(e.target).filter((_, index) => index < 10 && index !== 4)
         .reduce((acc, cur) => ({...acc, [cur.id] : cur.value}), {})
+
+        console.log(Object.values(e.target))
 
         // With formUser, my object isn't complete yet, so I create my final object, newUser in 
         // which I add an id property which is very randomized to be as unique as possible.
@@ -173,35 +181,47 @@ function CreateEmployee () {
                             <input id="city" type="text"/>
                             <br></br>
                             <label htmlFor="state">State</label><br></br>
-                            {/* <SelectState>
-                            </SelectState> */}
-                            <SimpleDropDown></SimpleDropDown>
-                            {/* <SimplestDropdown 
+                            <Dropdown
+                            id="state"
                             placeHolder="Select..."
                             options={StateOptions}
-                            containerClassName = "dropdownContainer"
-                            inputClassName = "dropdownInput"
-                            selectedValueClassName = "selectedValue"
-                            toolClassName = "dropdownTool"
-                            shownMenuClassName = "shownMenu"
-                            menuClassName = "dropdownMenu"
-                            itemClassName = "dropdownItem"
-                            itemSelectedClassName = "dropdownItemSelected"
+                            containerClassName="dropdownContainer"
+                            inputClassName="dropdownInput"
+                            selectedValueClassName="selectedValue"
+                            toolClassName="dropdownTool"
+                            shownMenuClassName="shownMenu"
+                            menuClassName="dropdownMenu"
+                            itemClassName="dropdownItem"
+                            itemSelectedClassName="dropdownItemSelected"
                             >
-                            </SimplestDropdown> */}
+                            </Dropdown>
                             <br></br>
                             <label htmlFor="zipCode">Zip Code</label><br></br>
                             <input id="zipCode" type="number"/>
                             <br></br>
                         </fieldset>
                         <label htmlFor="department">Department</label><br></br>
-                        <select name="department" id="department">
+                        {/* <select name="department" id="department">
                             <option>Sales</option>
                             <option>Marketing</option>
                             <option>Engineering</option>
                             <option>Human Resources</option>
                             <option>Legal</option>
-                        </select><br></br>
+                        </select><br></br> */}
+                        <Dropdown
+                            id="department"
+                            placeHolder="Select..."
+                            options={DptOptions}
+                            containerClassName="dropdownContainer"
+                            inputClassName="dropdownInput"
+                            selectedValueClassName="selectedValue"
+                            toolClassName="dropdownTool"
+                            shownMenuClassName="shownMenu"
+                            menuClassName="dropdownMenu"
+                            itemClassName="dropdownItem"
+                            itemSelectedClassName="dropdownItemSelected"
+                            >
+                        </Dropdown>
                         <StyledButton type="submit">Save</StyledButton>
                     </form>
                 </FormContainer>
