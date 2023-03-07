@@ -11,14 +11,13 @@ import SimpleDropdown from "romain-6793-react-simple-dropdown"
 
 const SuperContainer = styled.div`
 width: 100%;
-height: 740px;
+height: 800px;
 position: relative;
 `
 
 const PageContainer = styled.div`
 width: 100%;
 display: flex;
-height: 740px;
 flex-flow: column wrap;
 align-items: center;
 position: absolute;

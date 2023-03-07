@@ -20,18 +20,29 @@ align-items: center;
 
 const PageMain = styled.div`
 width: 90%;
-border: 1px solid black;
+// border: 1px solid black;
 margin-top: 50px;
 margin-bottom: 50px;
+border-radius: 10px;
 `
 
 const StyledTitle = styled.h2`
 color: ${colors.globaltext};
 font-weight: bold;
 font-size: 36px;
+@media (max-width: 767px) {
+    font-size: 10px;
+}
 `
 
 const TableHeader = styled.div`
+width: 100%;
+background: ${colors.secondary};
+border: 1px solid ${colors.secondary};
+border-radius: 10px 10px 0 0;
+`
+
+const TableSearch = styled.div`
 width: 100%;
 display: flex;
 justify-content: space-between;
@@ -61,7 +72,11 @@ const TableFooter = styled.div`
 width: 100%;
 display: flex;
 justify-content: space-between;
+margin-top: 10px;
+border-top: 1px solid black;
+border-radius: 0 0 10px 10px;
 color: ${colors.globaltext};
+background: #EDC9AF;
 font-size: 10px;
 @media (max-width: 767px) {
     font-size: 8px;
@@ -77,6 +92,7 @@ font-size: 10px;
 const TableLegend = styled.div`
 margin-top: 10px;
 max-width: 50%;
+padding-left: 5px;
 `
 
 function EmployeeList () {
@@ -171,27 +187,29 @@ function EmployeeList () {
     return (
         <PageContainer>
             <PageMain>
-                <StyledTitle>Current Employees</StyledTitle>
                 <TableHeader>
-                    <div>
-                        <span>Show </span>
-                        <select 
-                        name="entries" 
-                        id="entries" 
-                        onChange={handleRowsChange}
-                        defaultValue={rowsPerPage}
-                        >
-                            <option value="10">10</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option> 
-                        </select>
-                        <span> entries</span>
-                    </div>
-                    <div>
-                        <span>Search:</span>
-                        <input type="search" onChange={handleSearch}></input>
-                    </div>
+                    <StyledTitle>Current Employees</StyledTitle>
+                    <TableSearch>
+                        <div>
+                            <span>Show </span>
+                            <select 
+                            name="entries" 
+                            id="entries" 
+                            onChange={handleRowsChange}
+                            defaultValue={rowsPerPage}
+                            >
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option> 
+                            </select>
+                            <span> entries</span>
+                        </div>
+                        <div>
+                            <span>Search:</span>
+                            <input type="search" onChange={handleSearch}></input>
+                        </div>
+                    </TableSearch>
                 </TableHeader>
                 <StyledTable>
                     <Thead></Thead>

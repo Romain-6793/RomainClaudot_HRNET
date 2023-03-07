@@ -17,6 +17,7 @@ li {
     justify-content: center;
     min-width: 30%;
     max-width: 50%;
+    margin-top: 5px;
 }
 
 .page-link {
@@ -43,7 +44,7 @@ li {
 .grey-prev-link, .grey-next-link {
     height: 25px;
     cursor: auto;
-    color: #ccc;
+    color: #fff;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
@@ -60,7 +61,7 @@ li {
 }
 
 .active {
-    background : linear-gradient(#dcdcdc,#93ad18);
+    background : linear-gradient(#dcdcdc,#7ea2aa);
     border-radius: 5px;
 }
 
@@ -72,7 +73,7 @@ li {
         overflow: hidden;
     }
     .active {
-        background : linear-gradient(#dcdcdc,#93ad18);
+        background : linear-gradient(#dcdcdc,#7ea2aa);
     }
     .grey-prev-link, .grey-next-link {
         display: block;

@@ -12,6 +12,7 @@ toggleStates, toggleZips, sortData } from "../../slices/userSlice"
 const StyledThead = styled.thead`
 margin-bottom: 50px;
 font-size: 10px;
+background: #EDC9AF;
 @media (max-width: 767px) {
     font-size: 7px;
 }
@@ -25,7 +26,7 @@ font-size: 10px;
 
 const StyledRow = styled.tr`
 height: 40px;
-outline: thin solid;
+// outline: thin solid;
 `
 
 const StyledTh = styled.th`
@@ -49,6 +50,9 @@ height: 10px;
 display: flex;
 flex-flow: column wrap;
 cursor: pointer;
+@media (max-width: 1023px) {
+    margin-left: 80%;
+}
 @media (max-width: 767px) {
     display: none;
 }
