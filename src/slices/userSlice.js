@@ -315,8 +315,6 @@ const userSlice = createSlice({
                 const filteredArray = [...state.filteredArray]
 
                 const res = stringSort(filteredArray, action.payload.key);
-                console.log(action.payload.key)
-                console.log(res)
                 // That last line of return gives me a Boolean which will be my direction, If true for example
                 // I get my sorted array, if false, I get the reverse.
                 return Boolean(direction) ? res : res.reverse();

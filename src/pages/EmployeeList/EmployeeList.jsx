@@ -154,7 +154,6 @@ function EmployeeList () {
     };
     const handleRowsChange = (e) => {
 
-        console.log(e.target.value)
         dispatch(setRowsPerPage(Number(e.target.value)))
         
     };
@@ -217,7 +216,9 @@ function EmployeeList () {
                 <TableFooter>
                     <TableLegend>
                         {isLastPage || isLargerThanTotal ?
-                        <span>Showing {rowOffset + 1} to {totalArray.length} of {totalArray.length} entries</span>
+                        <span>
+                            Showing {rowOffset + 1} to {totalArray.length} of {totalArray.length} entries
+                        </span>
                         :
                         <span>Showing {rowOffset + 1} to {endOffset} of {totalArray.length} entries</span>
                         }

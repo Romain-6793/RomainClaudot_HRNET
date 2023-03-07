@@ -28,7 +28,6 @@ function useWindowSize() {
     return () => window.removeEventListener("resize", handleResize);
   }, []); // Empty array ensures that effect is only run on mount
 
-  console.log(windowSize)
   return windowSize;
 }
 

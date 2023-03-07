@@ -8,14 +8,12 @@ import {pushUser, storeUsersList, updateFilteredArray} from "../../slices/userSl
 import "../../utils/style/dropdown.css"
 import closeIcon from "../../assets/close.svg"
 import SimpleDropdown from "romain-6793-react-simple-dropdown"
-// import Dropdown from "../../SimpleDropdown/Dropdown"
 
 const SuperContainer = styled.div`
 width: 100%;
 height: 740px;
 position: relative;
 `
-
 
 const PageContainer = styled.div`
 width: 100%;
@@ -76,6 +74,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 `
+
 const CloseButton= styled.button`
 width: 30px;
 height: 30px;
@@ -91,11 +90,7 @@ justify-content: center;
 cursor: pointer;
 `
 
-
-
 function CreateEmployee () {
-
-    console.log(StateOptions)
 
     const dispatch = useDispatch()
 
@@ -121,8 +116,6 @@ function CreateEmployee () {
 
         const formUser = Object.values(e.target).filter((_, index) => index < 10 && index !== 4)
         .reduce((acc, cur) => ({...acc, [cur.id] : cur.value}), {})
-
-        console.log(Object.values(e.target))
 
         // With formUser, my object isn't complete yet, so I create my final object, newUser in 
         // which I add an id property which is very randomized to be as unique as possible.
@@ -153,7 +146,8 @@ function CreateEmployee () {
                 {isCreated? 
                 <Popup>
                     <PopupArea>
-                        <CloseButton onClick={handleClose}><img src={closeIcon} alt="closepopup"></img></CloseButton>
+                        <CloseButton onClick={handleClose}><img src={closeIcon} alt="closepopup"></img>
+                        </CloseButton>
                         <span>Employee Created !</span>
                     </PopupArea>
                 </Popup> 
@@ -202,13 +196,6 @@ function CreateEmployee () {
                             <br></br>
                         </fieldset>
                         <label htmlFor="department">Department</label><br></br>
-                        {/* <select name="department" id="department">
-                            <option>Sales</option>
-                            <option>Marketing</option>
-                            <option>Engineering</option>
-                            <option>Human Resources</option>
-                            <option>Legal</option>
-                        </select><br></br> */}
                         <SimpleDropdown
                             id="department"
                             placeHolder="Select..."

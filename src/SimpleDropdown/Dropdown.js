@@ -42,7 +42,6 @@ const Dropdown = (props) => {
         if (options.length !== 0) {
             setShowMenu(!showMenu)
         }
-        console.log(showMenu)
     }
 
     // The following function displays a placeHolder, either the label value of the selected option,
@@ -67,7 +66,7 @@ const Dropdown = (props) => {
         if (!selectedValue) {
             return false
         }
-        console.log(selectedValue)
+
         return selectedValue.value === option.value
     }
 
