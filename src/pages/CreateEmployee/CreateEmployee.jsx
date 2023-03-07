@@ -7,8 +7,8 @@ import StateOptions from "../../components/Dropdowns/StateOptions"
 import {pushUser, storeUsersList, updateFilteredArray} from "../../slices/userSlice"
 import "../../utils/style/dropdown.css"
 import closeIcon from "../../assets/close.svg"
-// import SimpleDropdown from "romain-6793-react-simple-dropdown"
-import Dropdown from "../../SimpleDropdown/Dropdown"
+import SimpleDropdown from "romain-6793-react-simple-dropdown"
+// import Dropdown from "../../SimpleDropdown/Dropdown"
 
 const SuperContainer = styled.div`
 width: 100%;
@@ -53,6 +53,7 @@ color: #fff;
 background: ${colors.primary};
 font-weight: bold;
 cursor: pointer;
+border: 1px solid #fff;
 `
 
 const Popup= styled.div`
@@ -181,7 +182,7 @@ function CreateEmployee () {
                             <input id="city" type="text"/>
                             <br></br>
                             <label htmlFor="state">State</label><br></br>
-                            <Dropdown
+                            <SimpleDropdown
                             id="state"
                             placeHolder="Select..."
                             options={StateOptions}
@@ -194,7 +195,7 @@ function CreateEmployee () {
                             itemClassName="dropdownItem"
                             itemSelectedClassName="dropdownItemSelected"
                             >
-                            </Dropdown>
+                            </SimpleDropdown>
                             <br></br>
                             <label htmlFor="zipCode">Zip Code</label><br></br>
                             <input id="zipCode" type="number"/>
@@ -208,7 +209,7 @@ function CreateEmployee () {
                             <option>Human Resources</option>
                             <option>Legal</option>
                         </select><br></br> */}
-                        <Dropdown
+                        <SimpleDropdown
                             id="department"
                             placeHolder="Select..."
                             options={DptOptions}
@@ -221,7 +222,7 @@ function CreateEmployee () {
                             itemClassName="dropdownItem"
                             itemSelectedClassName="dropdownItemSelected"
                             >
-                        </Dropdown>
+                        </SimpleDropdown>
                         <StyledButton type="submit">Save</StyledButton>
                     </form>
                 </FormContainer>

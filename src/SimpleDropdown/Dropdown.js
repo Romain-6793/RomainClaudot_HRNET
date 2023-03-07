@@ -75,6 +75,9 @@ const Dropdown = (props) => {
 
     return (
         <div>
+
+            {/* I put a select here if you want to recover the event target value on click or on change */}
+
             <select style={{ display: 'none', }} value={selectedValue.value} id={id} onChange={onItemClick}>
                 <option value=""></option>
                 {options.map((option) => (
