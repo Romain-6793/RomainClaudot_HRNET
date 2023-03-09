@@ -22,6 +22,8 @@ margin-left: 20px;
 `
 
 const StyledClose = styled.img`
+width: 15px;
+height: 15px;
 @media (max-width: 768px) {
     width: 10px;
     height: 10px;

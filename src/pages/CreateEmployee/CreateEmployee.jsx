@@ -60,9 +60,28 @@ position: absolute;
 background: #fff;
 border-radius: 10px;
 top: 40%;
-left: 39%;
+left: 42%;
 z-index: 3;
 opacity: 1;
+@media (max-width: 1619px) {
+    left: 37%;  
+}
+@media (max-width: 1439px) {
+    left: 30%;
+}
+@media (max-width: 1023px) {
+    left: 24%;
+}
+@media (max-width: 767px) {
+    width: 300px;
+    left: 15%;
+}
+@media (max-width: 424px) {
+    left: 10%;
+}
+@media (max-width: 374px) {
+    left: 4%;
+}
 `
 
 const PopupArea= styled.div`

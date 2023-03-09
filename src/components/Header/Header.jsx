@@ -26,6 +26,7 @@ align-items: center;
 
 const HomeLogo = styled.img`
  width: 100px;
+ height: 100px;
 `
 
 const StyledLink = styled(Link)`
