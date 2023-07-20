@@ -34,19 +34,19 @@ margin-right: 0.5rem;
 // text-decoration: none;
 font-weight: bold;
 font-size: 18px;
-color: ${colors.globaltext}
+color: ${colors.globaltext};
 &:visited {
-  color: ${colors.globaltext}
+  color: ${colors.globaltext};
 }
 &:focus {
-  color: ${colors.globaltext}
+  color: ${colors.globaltext};
 }
 &:active {
-  color: ${colors.globaltext}
+  color: ${colors.globaltext};
 }
 &:hover {
  text-decoration: underline;
- color: ${colors.globaltext}
+ color: ${colors.globaltext};
 }
 @media (max-width: 767px) {
   font-size: 10px;
